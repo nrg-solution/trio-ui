@@ -1,0 +1,273 @@
+<nav class="navbar navbar-fixed-top" >
+    <div class="navbar-header">       
+    <img [src]="imgsrc">        
+    </div>
+    </nav>   
+<div>
+<br/>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+            <alert></alert>
+
+    <div class="col-sm-8 col-sm-offset-2">
+        <div>
+                <br/>
+        <h3> <a> Partner Register Form </a> </h3>
+      </div>
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    
+      
+        
+    <table>
+    
+    <!-- 1 row -->
+    
+    <tr>
+    <td> 
+         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="emailID">Email ID*</label>
+            <input type="text" class="form-control" name="emailID" [(ngModel)]="model.emailID" #emailID="ngModel" required />
+            <div *ngIf="f.submitted && !emailID.valid" class="help-block">Email ID is required</div>
+        </div>
+    
+    </td>
+    <td width="40px;"></td>
+    <td>
+    
+   
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !selectedCountry.valid }">
+         <label for="state">Country*</label>            
+        <select class="form-control" name ="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" required>
+        <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+        </option> 
+        </select>
+        <div *ngIf="f.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+        
+       </div>
+          
+       
+       
+       
+       </td>
+    
+    </tr>
+    
+    
+    <!-- 2 row  -->
+    
+   
+      <tr> 
+    <td> 
+
+ <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+     <label for="phoneNumber">Phone Number*</label>
+     <input type="text" class="form-control" placeholder="Eg-8870477654" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
+     <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">Number is required</div>
+ </div>
+ 
+    
+</td>
+<td width="40px;"></td>    
+  <td> 
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !noofclinics.valid }">
+                  <label for="noofclinics">Clinic Package*</label>
+                  <input type="text" class="form-control" name="noofclinics" [(ngModel)]="model.noofclinics" #noofclinics="ngModel" ng-pattern="/^[0-9]+$/" required />
+                  <div *ngIf="f.submitted && !noofclinics.valid" class="help-block">Clinics is required</div>
+              </div>
+          </td>
+    </tr>
+   
+   <!-- 3 row start -->
+    <tr> 
+   <td>
+    
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+           <label for="firstName">First Name*</label>
+           <input type="text" class="form-control" placeholder="Eg-Jeff" name="firstName"  [(ngModel)]="model.firstName" #firstName="ngModel" required />
+           <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+       </div>
+   
+   </td>   
+    <td width="40px;"></td>
+    <td> 
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="lastName">Last Name*</label>
+            <input type="text" class="form-control" placeholder="Eg-Ubalt" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+    
+    </td>
+   
+  
+    </tr>
+    
+    <!-- 4 row end -->
+    
+    <tr>
+      <td>   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <label for="username">Username*</label>
+        <input type="text" class="form-control" placeholder="Eg-Jeff" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+        <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+    </div>
+    </td>
+        <td width="40px;"></td> 
+        <td> 
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                  <label for="password">Password*</label>
+                  <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                  <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+              </div>
+          </td>
+    <tr>
+    
+    <!-- 5 row end -->
+    
+    <tr>
+        <td>   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankName.valid }">
+            <label for="bankName">Bank Name*</label>
+            <input type="text" class="form-control" placeholder="Eg-HSBC" name="bankName" [(ngModel)]="model.bankName" #bankName="ngModel" required />
+            <div *ngIf="f.submitted && !bankName.valid" class="help-block">Bank Name is required</div>
+        </div>
+        </td>
+        <td width="40px;"></td> 
+        <td> 
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankAcctNumber.valid }">
+                  <label for="bankAcctNumber">Account No*</label>
+                  <input type="text" class="form-control" placeholder="Eg-100123454323" name="bankAcctNumber" [(ngModel)]="model.bankAcctNumber" 			#bankAcctNumber="ngModel" required />
+                  <div *ngIf="f.submitted && !bankAcctNumber.valid" class="help-block">A/C is required</div>
+              </div>
+          </td>
+    <tr>
+        <td> 
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !agentCode.valid }">
+                <label for="agentCode">Agent Code*</label>
+                <input type="text" class="form-control" name="agentCode" [(ngModel)]="model.agentCode" #agentCode="ngModel" required />
+                <div *ngIf="f.submitted && !agentCode.valid" class="help-block">Agent Code is required</div>
+            </div>          
+        </td>
+        <td width="40px;"></td> 
+        <td> 
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !npwpNumber.valid }">
+                  <label for="npwpNumber">NPWP Number*</label>
+                  <input type="text" class="form-control" name="npwpNumber" [(ngModel)]="model.npwpNumber" #npwpNumber="ngModel" required />
+                  <div *ngIf="f.submitted && !npwpNumber.valid" class="help-block">NPWP Number is required</div>
+              </div>
+        </td>
+    </tr>
+
+    
+    </table>
+
+
+        
+<!--        Submit button  -->  
+     
+        
+ <!--        <div class="form-group">
+            <label> Silver (100 USD) </label>
+             <input type="radio"  name="actType" [(ngModel)]="model.actType"  value="silver"> Silver <br/>
+                  
+             <label> Gold (1000 USD) </label>        
+             <input type="radio" name="actType" [(ngModel)]="model.actType" value="gold"> Gold <br/>
+       
+         <label> Platinum (1000 USD) </label>
+             <input type="radio" name="actType" [(ngModel)]="model.actType"  value="platinum"> Platinum
+        </div>  -->
+        
+        <div class="form-group">
+            <button class="btn btn-primary">Register</button>
+        <!--    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+            <a [routerLink]="['/login']" class="btn btn-primary">Cancel</a> 
+
+        </div>
+
+    <!-- Dialog Box section -->
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document" style=" -webkit-transform: translate(0,-50%); -o-transform: translate(0,-50%);
+            transform: translate(0,-50%);top: 20%;margin: 0 auto;">
+        <div class="modal-content" style=" overflow:hidden;">
+            <div class="modal-header" style="background-color:rgb(48, 105, 171);">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="color:white;">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Registration successfully completed. Please check your email.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" style="color:white;background-color:rgb(48, 105, 171);">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+
+<!-- 1rd dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}">
+            <div class="modal-dialog" role="document" style=" -webkit-transform: translate(0,-50%); -o-transform: translate(0,-50%);
+                transform: translate(0,-50%);top: 20%;margin: 0 auto;">
+                <div class="modal-content" style=" overflow:hidden;">
+                    <div class="modal-header" style="background-color:rgb(48, 105, 171);">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled1()"></button>
+                        <h4 class="modal-title" style="color:white;">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Username is already registered Please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled1()" style="color:white;background-color:rgb(48, 105, 171);">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+
+  <!-- Dialog Box -->
+  
+<!-- 2nd dialog box -->
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display2}">
+    <div class="modal-dialog" role="document" style=" -webkit-transform: translate(0,-50%); -o-transform: translate(0,-50%);
+        transform: translate(0,-50%);top: 20%;margin: 0 auto;">
+    <div class="modal-content" style=" overflow:hidden;">
+        <div class="modal-header" style="background-color:rgb(48, 105, 171);">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled2()"></button>
+            <h4 class="modal-title" style="color:white;">Error</h4>
+        </div>
+        <div class="modal-body">
+            <p>Given Agent ID is not Exist. Please try again.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled2()" style="color:white;background-color:rgb(48, 105, 171);">Close</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+
+<!-- 3nd dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document" style=" -webkit-transform: translate(0,-50%); -o-transform: translate(0,-50%);
+                    transform: translate(0,-50%);top: 20%;margin: 0 auto;">
+                <div class="modal-content" style=" overflow:hidden;">
+                    <div class="modal-header" style="background-color:rgb(48, 105, 171);">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled1()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color:white;">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Network issue please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled1()" style="color:white;background-color:rgb(48, 105, 171);">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+
+    
+
+
+    </form>
+    </div>
+</div>

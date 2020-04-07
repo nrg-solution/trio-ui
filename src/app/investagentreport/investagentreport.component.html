@@ -1,0 +1,129 @@
+<app-header></app-header>
+<br/> <br/> 
+<form name="invreportform" (ngSubmit)="invreport.form.valid && getAgentInvReport()" #invreport="ngForm" novalidate> 
+    <div id="wrapper1" style="-webkit-overflow-scrolling: touch;">                  
+        <br/>                       
+        <div class="col-sm-8">  
+            <h3> <a> Investment Agent Report View  </a></h3> 
+            <br/>    
+        
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': invreport.submitted && !name.valid }">
+                        <select class="form-control" name ="name"  [(ngModel)]="model.name" #name="ngModel" required>
+                                <option *ngFor="let itemAgent of invagList" value="{{ itemAgent }}"> {{ itemAgent }} 
+                                </option> 
+                        </select>
+                        <div *ngIf="invreport.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">From Date*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': invreport.submitted && !fromDate.valid }">
+                            <input type="date" class="form-control" name="fromDate" [(ngModel)]="model.fromDate" #fromDate="ngModel" required />
+                            <div *ngIf="invreport.submitted && !fromDate.valid" class="help-block">From Date is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">To Date*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': invreport.submitted && !toDate.valid }">
+                                <input type="date" class="form-control" name="toDate" [(ngModel)]="model.toDate" #toDate="ngModel" required />
+                                <div *ngIf="invreport.submitted && !toDate.valid" class="help-block">To Date is required</div>
+                        </div>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                    <button class="btn btn-primary">Search</button>
+                    <button [routerLink]="['/agent-report']" class="btn btn-primary">Back</button>
+            </div>
+        </div>
+  </div>
+</form>            
+    
+<div *ngIf="invreporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+
+    <div class="col-sm-8">
+        <button (click)="printToCart2()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+        <table cellpadding="0" cellspacing="0" border="0" style="height:265px;" 
+          class="datatable table table-striped table-bordered" id="invagentReport" #invagentReport>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>AgentCode</th>
+                    <th>AgentName</th>
+                    <th>PartnerNumber</th>
+                    <th>PartnerName</th>
+                    <th>PartnerEmailID</th>
+                    <th>PartnerPhoneNumber</th>
+                    <th>CreatedDate</th>
+                    <th>No.of.Clinic</th>
+                    <th>InvestmentAmount</th>
+                    <th>PaymentStatus</th>
+                </tr>
+            </thead> 
+            
+            <tbody>
+                <tr *ngFor="let iRL of invReportList"> 
+                    <td>{{ iRL.sNo }}</td>
+                    <td>{{ iRL.agentCode }}</td>
+                    <td>{{ iRL.cname }}</td>
+                    <td>{{ iRL.memberNumber }}</td>
+                    <td>{{ iRL.firstName }}</td>
+                    <td>{{ iRL.emailID }}</td>
+                    <td>{{ iRL.phoneNumber }}</td>
+                    <td>{{ iRL.bookingdate }}</td>
+                    <td>{{ iRL.noofclinics }}</td>
+                    <td>{{ iRL.totalAmount }}</td>
+                    <td>{{ iRL.paymentpath }}</td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Network issue please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noreportagentinfo}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No report for these two days.</p> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,2905 @@
+
+<div class="wy-grid-for-nav">
+   
+    <nav class="navbar navbar-fixed-top" >
+         <div class="navbar-header">
+      
+<a class="pointer" (click)="adminhome()">
+<img [src]="imgsrc"> </a>
+     </div>
+
+                
+ <ul class="nav navbar-right navbar-top-links">
+         <li class="dropdown navbar-inverse">
+         <a class="notif"  data-toggle="dropdown" href="#">
+                 <i class="fa fa-user fa-fw"></i>  <b class="caret"></b> 
+                 </a>
+         <ul class="dropdown-menu dropdown-alerts">
+ <li>
+                 <!-- <a href="#">  -->
+                     <a>
+                          <div>
+                             <i class="fa fa-comment fa-fw"></i> New Partner Request
+                             <span class="pull-right text-muted small">4 minutes ago</span>
+                         </div>
+                     </a>
+                 </li>
+                 <li>
+                    <!-- <a href="#">  -->
+                     <a>
+                         <div>
+                             <i class="fa fa-twitter fa-fw"></i> New Withdraw Request
+                             <span class="pull-right text-muted small">12 minutes ago</span>
+                         </div>
+                     </a>
+                 </li>
+                
+            
+             </ul>  
+         </li>
+         <li class="dropdown">
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                 <i class="fa fa-user fa-fw"></i> General Manager <b class="caret"></b>
+             </a>
+             <ul class="dropdown-menu dropdown-user">
+                
+
+                 <li><a (click)="clickUser()"><i class="fa fa-user fa-fw"></i> User Guide</a>
+                 </li>
+                 <li class="divider"></li>
+                 <li><a [routerLink]="['/login']">
+                     <i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                 </li>
+             </ul>
+         </li>
+     </ul>
+     <!-- /.navbar-top-links -->
+ 
+   
+ </nav>    
+ 
+ <div *ngIf="adminDashDiv" id="page-wrapper" style="cursor: pointer;">
+     <div class="row">
+         <div class="col-lg-12">
+             <h2 class="page-header"> <a> TRIO General Manager Dashboard </a></h2>
+         </div>
+         <!-- /.col-lg-12 -->
+     </div>
+     <!-- /.row -->
+     <div class="row">
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>All Partner</div>
+                         </div>
+                     </div>
+                 </div>
+  
+                     <div class="panel-footer">
+                         <span class="pull-left"> <a (click)="onMenuClick('allmember')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+ 
+                         <div class="clearfix"></div>
+                     </div>
+     
+             </div>
+         </div>
+ 
+ 
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">  
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Register Agent</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"> <a (click)="onMenuClick('registeragent')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+         
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>View Agent</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                             <span class="pull-left"> <a (click)="onMenuClick('getAgentInfo')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+         
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Approve Partner</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"><a (click)="onMenuClick('approvemember')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+ 
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-green">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-tasks fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Add Clinic on Partner</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"><a (click)="onMenuClick('addclinic')">Click here</a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-green">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-tasks fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Approve withdraw</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"><a (click)="onMenuClick('approvewithdraw')">Click here</a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+
+        
+
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-green">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Register Clinic</div>
+                         </div>
+                     </div>
+                 </div>
+
+                     <div class="panel-footer">
+                         <span class="pull-left"> <a (click)="onMenuClick('registerclinic')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+
+             </div>
+         </div>
+
+
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-green">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>View Clinic</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                             <span class="pull-left"><a (click)="onMenuClick('allClinic')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-red">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Register Employee</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                             <span class="pull-left"><a (click)="onMenuClick('registeremployee')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+             
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-red">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>View Employee</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"><a (click)="onMenuClick('getEmployInfo')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+
+         <div class="col-lg-3 col-md-6">
+                 <div class="panel panel-red">
+                     <div class="panel-heading">
+                         <div class="row">
+                             <div class="col-xs-3">
+                                 <i class="fa fa-tasks fa-5x"></i>
+                             </div>
+                             <div class="col-xs-9 text-right">
+                                 <div>Report</div>
+                             </div>
+                         </div>
+                     </div>
+                         <div class="panel-footer">
+                             <span class="pull-left"><a [routerLink]="['/report-menus']">Click here</a></span>
+                             <!-- <span class="pull-left"><a (click)="onMenuClick('report')">Click here</a></span> -->
+                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+             
+                             <div class="clearfix"></div>
+                         </div>
+                 </div>
+             </div>
+         </div>
+ </div>
+
+
+<div class="row">
+<section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+    <form name="form8">
+        <div *ngIf="allmember" id="page-wrapper" class="alldiv" style="-webkit-overflow-scrolling: touch;">
+            <br/>   <br/>  						  
+            <div style="margin-left: -15px;">  
+				<form name="partnerfilterForm" (ngSubmit)="searchallpartner.form.valid && searchAllPartner()" #searchallpartner="ngForm" novalidate> 
+                    <table cellspacing="0" cellpadding="0" id="box-table-a">
+                        <thead>
+                            <th id="header">Search Criteria</th>
+                        </thead>
+                        <tbody>
+                            <tr> <br/> </tr>
+                            <tr>
+                                <div class="col-sm-3">
+                                    <div class="form-group" [ngClass]="{ 'has-error': searchallpartner.submitted && !memberName.valid }">
+                                        <label value="fromDate" style="padding-left:3px;">Partner Name</label>
+                                            <select class="form-control" name ="memberName"  [(ngModel)]="model.memberName" #memberName="ngModel" style="height:30px;" required>
+                                                <option value="All">All</option>   
+                                                <option *ngFor="let itemPartner of partnerList" value="{{ itemPartner }}"> {{ itemPartner }} </option> 
+                                            </select>
+                                        <div *ngIf="searchallpartner.submitted && !memberName.valid" class="help-block">Partner Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group" [ngClass]="{ 'has-error': searchallpartner.submitted && !payStatus.valid }">
+                                        <label value="toDate" style="padding-left:3px;">Partner Status</label>
+                                            <select class="form-control"  name ="payStatus" [(ngModel)]="model.payStatus" #payStatus="ngModel" style="height:30px;margin-left:-5px;" required>
+                                                <option value="All">All</option>
+                                                <option value="Payment Uploaded">Paid</option>
+                                                <option value="Waiting">Not-Paid</option>
+                                            </select>
+                                        <div *ngIf="searchallpartner.submitted && !payStatus.valid" class="help-block">Status is required</div>
+                                    </div>
+                                </div>   
+                                <div class="col-sm-3">
+                                    <div class="form-group" [ngClass]="{ 'has-error': searchallpartner.submitted && !selectedCountry.valid }">
+                                        <label value="agentCode" style="margin-left: 0px;">Country</label>
+                                        <select class="form-control" name ="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" style="height:30px;" required>
+                                            <option value="All">All</option>
+                                            <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} </option> 
+                                        </select>
+                                        <div *ngIf="searchallpartner.submitted && !selectedCountry.valid" class="help-block" style="margin-left:0px;">Country is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">    
+                                    <div class="form-group" [ngClass]="{ 'has-error': searchallpartner.submitted && !agentCode.valid }">
+                                        <label value="agentCode">Agent Code</label>
+                                        <select class="form-control" name="agentCode"  [(ngModel)]="model.agentCode" #agentCode="ngModel" style="height:30px;" required>
+                                            <option value="All">All</option>
+                                            <option *ngFor="let itemAgent of invagList" value="{{ itemAgent }}"> {{ itemAgent }} </option> 
+                                        </select>
+                                        <div *ngIf="searchallpartner.submitted && !agentCode.valid" class="help-block" style="margin-left:3px;">Agent Code is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button class="btn btn-default" type="submit" style="margin-top:23px;margin-left:-25px;">Search</button> 
+                                </div>
+                            </tr>
+                        </tbody>                   
+                    </table>
+                </form> 
+			</div>				  
+   
+            <br/>
+            <div class="container">
+                <div class="col-sm-12">
+                    <h3> <a> TRIO All Partner Details  </a></h3> 		
+                    <br/>
+                    <div *ngFor="let x of allMemList"  class="row">
+                        <div class="col-sm-12 col-lg-8">      
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">
+                                    <h4> <a> Partner Name</a> </h4>
+                                </div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">
+                                    <h4> <a>: </a> </h4>
+                                </div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">
+                                    <h4> <a>{{ x.memberName }} </a> </h4>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberID }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Phone</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberPhone }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberEmail }}</div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Account Type</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberType }}</div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">No.of Clinics</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.noofclinics }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Total Amount</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.totalAmount }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Partner Status</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberStatus }}</div>
+                            </div>                       
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>                            
+                            </div>          
+                        </div>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </form>
+ 
+<!-- Clinic View start -->
+<form name="clinicViewForm">
+ <div *ngIf="clinicAllDiv" id="page-wrapper" class="alldiv" style="-webkit-overflow-scrolling: touch;">
+     <br/>  <br/>  						  
+     <div class="col-sm-8">  
+         <form name="clinicfilterForm" (ngSubmit)="search1.form.valid && searchClinic()" #search1="ngForm" novalidate>
+             <br/>
+             <table cellspacing="0" cellpadding="0" style="width: 500px;text-align: center" id="box-table-a">
+                 <thead>
+                     <th id="header">Search Criteria</th>
+                 </thead>
+                 <tbody>
+                     <tr> <br/> </tr>
+                     <tr>
+                         <div class="col-sm-3">
+                                 <label value="name">Please Select</label>
+                         </div> 
+                         <div class="col-sm-4">
+                                 <div class="form-group" [ngClass]="{ 'has-error': search1.submitted && !name.valid }">
+                                     <select class="form-control" name ="name"  [(ngModel)]="model.name" #name="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>   
+                                         <option *ngFor="let itemAgent of agList" value="{{ itemAgent }}"> {{ itemAgent }} </option> 
+                                     </select>
+                                     <div *ngIf="search1.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-1">
+                                 <button class="btn btn-default" type="submit">Search</button> 
+                             </div>
+                     </tr>
+                 </tbody>                   
+             </table>
+            
+         </form>
+     </div>
+     <br/>
+     <div class="container">  
+         <div class="col-sm-12 col-lg-8">  
+             <h3 style="margin-left: 90px;"> <a> Clinic Info Details  </a></h3>  
+             <br/>           
+             <div *ngFor="let c of clinicList" class="row">                   
+                 <div class="row">   
+                     <div class="col-md-5 col-xs-5 col-lg-3">S.No</div>
+                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                     <div class="col-md-6 col-xs-5 col-lg-6">{{ c.sNo }}</div>
+
+                     <div class="col-md-5 col-xs-5 col-lg-3">Clinic ID</div>
+                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                     <div class="col-md-6 col-xs-5 col-lg-6">{{ c.clinicCode }}</div>
+
+                     <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name</div>
+                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                     <div class="col-md-6 col-xs-5 col-lg-6">{{ c.clinicName }}</div>
+
+                     <div class="col-md-5 col-xs-5 col-lg-3">Clinic Phone</div>
+                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                     <div class="col-md-6 col-xs-5 col-lg-6">{{ c.phoneNumber }}</div>
+
+                     <div class="col-md-5 col-xs-5 col-lg-3">Agent Name</div>
+                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                     <div class="col-md-6 col-xs-5 col-lg-6">{{ c.name }}</div>
+
+                     <div class="col-md-12 col-xs-12 col-lg-7" style="text-align: center;">
+                         <button  (click)="clinicAction('edit',c.clinicCode,c.primaryKey)" class="btn btn-primary"
+                                 style="padding-top:1px;padding-bottom:2px;">Edit</button> 
+                         <button  (click)="clinicAction('remove',c.clinicCode,c.primaryKey)" class="btn btn-primary"
+                                 style="padding-top:1px;padding-bottom:2px;">Remove</button> 
+                     </div>
+         
+                 </div> 
+                                             
+                 <div class="row">
+                     <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>                            
+                 </div>          
+             </div>
+         </div>
+     </div>     
+ </div>
+</form>
+
+ <form name="approvewithdrawform">
+     <div *ngIf="approvewithdraw">        
+         <div class="container">
+             <br/><br/>
+           <div *ngFor="let x of ledgerList"  class="row">
+                 <br/><br/>
+             <div class="col-sm-8">      
+                     <div class="row">
+                           <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                           <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                           <div class="col-md-6 col-xs-6 col-lg-6">{{ x.memberID }}</div>
+                     </div>
+                     <div class="row">
+                           <div class="col-md-5 col-xs-5 col-lg-3">Withdraw Amount</div>
+                           <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                           <div class="col-md-6 col-xs-6 col-lg-6">{{ x.withdrawAmount }}</div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Withdraw Date</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ x.withdrawDate }}</div>
+                       </div><br/>
+                     <div class="col-md-5 col-xs-5 col-lg-3">
+                         <p>  
+                             <button  (click)="onWithdrawClick(x.memberID,'Approvewithdraw',x.withdrawDate)" class="btn btn-primary">Click to Approve</button> 
+                         </p>    
+                     </div>
+                   <div class="col-md-6 col-xs-6 col-lg-6" >
+                     <p>  
+                         <button  (click)="onWithdrawClick(x.memberID,'Rejectwithdraw',x.withdrawDate)" class="btn btn-primary">Click to Reject</button> 
+                      </p>
+                   </div>
+                              
+                 <div class="row">
+                     <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>
+                     
+                 </div> 
+         
+             </div>
+           </div>
+     </div>     
+ </div>
+</form>
+
+ <form name="form2">
+         <div *ngIf="approvemember" id="page-wrapper" style="-webkit-overflow-scrolling: touch;"> 
+             <br/>    
+             <div class="container">
+                 <br/><br/>
+                 <div *ngFor="let x of allMemList"  class="row">
+                 <div class="col-sm-8">      
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">
+                                     <h4> <a> Partner Name</a> </h4>
+                                 </div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">
+                                     <h4> <a> :</a> </h4>
+                                 </div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">
+                                     <h4> <a>{{ x.memberName }} </a> </h4>
+                                 </div>
+                             </div> 
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberID }}</div>
+                             </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Phone</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberPhone }}</div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberEmail }}</div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Account Type</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberType }}</div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic Package</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.noofclinics }}</div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Total Amount</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.totalAmount }}</div>
+                         </div>
+                         <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Partner Status</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">{{ x.memberStatus }}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Payment Status</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-5 col-lg-6" >{{ x.paymentStatus }}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3"></div>
+                             <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                             <div class="col-md-6 col-xs-5 col-lg-6" >
+                                 <a  (click)="viewreceipt(x.memberID)" class="btn btn-link">View Payment</a> 
+                             </div>
+                         </div>
+                         <div class="col-md-5 col-xs-5 col-lg-3">
+                             <p>  
+                                 <button  (click)="onButtonClick(x.userLoginPrimaryKey,'Approve')" class="btn btn-primary">Click to Approve</button> 
+                             </p>    
+                         </div>
+                         <div class="col-md-6 col-xs-5 col-lg-6">
+                         <p>  
+                             <button  (click)="onButtonClick(x.userLoginPrimaryKey,'Reject')" class="btn btn-primary">Click to Reject</button> 
+                             </p>
+                         </div>
+                                     
+                     <div class="row">
+                         <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>                            
+                     </div>              
+                 </div>   
+            </div>
+            <!-- Dialog Box Start -->
+            <div  class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}"  style="margin-top:-3%;height: 300%;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Payment View</div>
+                                    <div *ngFor="let file of fileUploads | async">
+                                        <div class="panel-body">
+                                            <details-upload [fileUpload]='file'></details-upload>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="onCloseHandled()" >Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>     
+     </div>
+ </form>
+
+    <form name="form1">
+        <div *ngIf="addclinic"  id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+            <br/>
+            <h3> <a> Add Clinic on Partner  </a></h3> <br/>						  
+            <div class="container">
+                <br/>
+                <div class="row">							
+                        <div class="form-group" [ngClass]="{'has-error':f.submitted && !cliniclist.valid}">
+                            <div class="col-lg-6 col-sm-5 col-xs-4"></div>  
+                            <div class="col-lg-3 col-sm-4 col-xs-4">       
+                                <select class="form-control"  name ="cliniclist" [(ngModel)]="model.cliniclist" #cliniclist="ngModel" required>
+                                <!-- <option value="clinic">Clinic</option>
+                                    <option value="nonclinic">Non-Clinic</option>  -->
+                                    <option value="registered">Registered</option>
+                                    <option value="notregistered">Not-Registered</option>
+                                </select>
+                            </div>
+                        </div>					
+                        <!-- Submit  -->
+                        <div class="col-lg-3 col-sm-3 col-xs-4">
+                            <div class="form-group" style="margin-top: -15px;">
+                                <button  class="btn btn-primary" (click)="filterclinic()">Filter</button>
+                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-sm-8" style="margin-left: -15px;">   
+                    <form name="notregisterclinicform" (ngSubmit)="searchnotregisterclinic.form.valid && searchPartnerNotRegisteredClinic()" #searchnotregisterclinic="ngForm" novalidate> 
+                        <table cellspacing="0" cellpadding="0" id="box-table-a">
+                            <thead>
+                                <th id="header">Search Criteria</th>
+                            </thead>
+                            <tbody>
+                                <tr> <br/> </tr>
+                                <tr>
+                                    <div class="col-sm-3">
+                                        <div class="form-group" [ngClass]="{ 'has-error': searchnotregisterclinic.submitted && !fromDate.valid }">
+                                            <label value="fromDate" style="padding-left:3px;">From Date</label>
+                                            <input type="date" class="form-control" name="fromDate" [(ngModel)]="model.fromDate" #fromDate="ngModel" style="height:30px;" required />
+                                            <div *ngIf="searchnotregisterclinic.submitted && !fromDate.valid" class="help-block">From Date is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group" [ngClass]="{ 'has-error': searchnotregisterclinic.submitted && !toDate.valid }">
+                                            <label value="toDate" style="padding-left:3px;">To Date</label>
+                                            <input type="date" class="form-control" name="toDate" [(ngModel)]="model.toDate" #toDate="ngModel" style="height:30px;margin-left:-5px;" required />
+                                            <div *ngIf="searchnotregisterclinic.submitted && !toDate.valid" class="help-block">To Date is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group" [ngClass]="{ 'has-error': searchnotregisterclinic.submitted && !agentCode.valid }">
+                                            <label value="agentCode" style="padding-left:3px;">Agent Code</label>
+                                            <select class="form-control" name="agentCode"  [(ngModel)]="model.agentCode" #agentCode="ngModel" style="height:30px;margin-left:-15px;" required>
+                                                <option value="All">All</option>
+                                                <option *ngFor="let itemAgent of invagList" value="{{ itemAgent }}"> {{ itemAgent }} </option> 
+                                            </select>
+                                            <div *ngIf="searchnotregisterclinic.submitted && !agentCode.valid" class="help-block" style="margin-left:-10px;">Agent is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button class="btn btn-default" type="submit" style="margin-top:23px;margin-left:50px;">Search</button> 
+                                    </div>
+                                </tr>
+                            </tbody>                   
+                        </table>
+                    </form>              
+                </div> 
+                <div class="col-sm-8">
+                    <a> <h2 style="margin-left: -15px;">Not Registered Clinic</h2> </a>
+                    <div *ngFor="let x of allMemList"  class="row"> 
+                        <br/> 	 <br/>				
+                        <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-6 col-lg-6">{{ x.memberID }}</div>
+                        </div>
+                        <!--  name  -->
+                        <div class="row">  
+                            <div class="col-md-5 col-xs-5 col-lg-3">Clinic Status</div>   
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>  
+                            <div class="col-md-6 col-xs-6 col-lg-6">{{ x.status }}</div>  
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Clinic Package</div>   
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>  
+                            <div class="col-md-6 col-xs-6 col-lg-6">{{ x.noofclinics }}</div>  
+                        </div>
+                        <div class="row">
+                                <div class="col-md-5 col-xs-4 col-lg-3"></div>
+                                <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                                <div class="col-md-6 col-xs-4 col-lg-6" >
+                                    <a (click)="getNoClinics(x.memberID,x.noofclinics)" class="btn btn-link">Add Clinic</a>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>								
+                        </div>
+                    </div>
+            </div>   
+        </div>
+    </div>
+    <!-- Clinic and member view start     -->
+        <div *ngIf="clinicdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+            <br/><br/>    
+            <div class="container">
+                <br/>
+                <div class="row">		   					
+                     <div class="form-group" [ngClass]="{'has-error':f.submitted && !cliniclist.valid}">
+                         <div class="col-lg-6 col-sm-5 col-xs-4"></div>  
+                         <div class="col-lg-3 col-sm-4 col-xs-4">       
+                             <select class="form-control"  name ="cliniclist" [(ngModel)]="model.cliniclist" #cliniclist="ngModel" required>
+                                 <option value="registered">Registered</option>
+                                 <option value="notregistered">Not-Registered</option>
+                             </select>
+                         </div>
+                         <div *ngIf="f.submitted && !cliniclist.valid" class="help-block">Choose Clinic is required.</div>
+                     </div>					
+                     <!-- Submit  -->
+                     <div class="col-lg-3 col-sm-3 col-xs-4">
+                         <div class="form-group" style="margin-top: -15px;">
+                             <button  class="btn btn-primary" (click)="filterclinic()">Filter</button>
+                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                         </div>
+                     </div>
+             </div>
+             
+             <div class="col-sm-8" style="margin-left: -15px;">   
+                 <form name="agentform" (ngSubmit)="searchpartner.form.valid && searchPartnerRegisteredClinic()" #searchpartner="ngForm" novalidate> 
+                     <table cellspacing="0" cellpadding="0" id="box-table-a">
+                         <thead>
+                             <th id="header">Search Criteria</th>
+                         </thead>
+                         <tbody>
+                             <tr> <br/> </tr>
+                             <tr>
+                                 <div class="col-sm-3">
+                                 <div class="form-group" [ngClass]="{ 'has-error': searchpartner.submitted && !fromDate.valid }">
+                                     <label value="fromDate" style="padding-left:3px;">From Date</label>
+                                     <input type="date" class="form-control" name="fromDate" [(ngModel)]="model.fromDate" #fromDate="ngModel" style="height:30px;" required />
+                                     <div *ngIf="searchpartner.submitted && !fromDate.valid" class="help-block">From Date is required</div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-3">
+                                 <div class="form-group" [ngClass]="{ 'has-error': searchpartner.submitted && !toDate.valid }">
+                                     <label value="toDate" style="padding-left:3px;">To Date</label>
+                                     <input type="date" class="form-control" name="toDate" [(ngModel)]="model.toDate" #toDate="ngModel" style="height:30px;margin-left:-5px;" required />
+                                     <div *ngIf="searchpartner.submitted && !toDate.valid" class="help-block">To Date is required</div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-2">
+                                 <div class="form-group" [ngClass]="{ 'has-error': searchpartner.submitted && !agentCode.valid }">
+                                     <label value="agentCode" style="padding-left:3px;">Agent Code</label>
+                                     <select name="agentCode" class="form-control" [(ngModel)]="model.agentCode" #agentCode="ngModel" style="height:30px;width:120px;margin-left:-15px;" required>
+                                         <option value="All" selected="selected">All</option>
+                                         <option *ngFor="let agentCode of agList" [ngValue]="agentCode" value="{{ agentCode }}">{{agentCode}}</option>
+                                     </select> 
+                                     <div *ngIf="searchpartner.submitted && !agentCode.valid" class="help-block" style="margin-left:-10px;">Agent is required</div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-3">
+                                 <div class="form-group" [ngClass]="{ 'has-error': searchpartner.submitted && !name.valid }">
+                                     <label value="name" style="padding-left:3px;">Employee Name</label>
+                                     <select name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel" style="height:30px;width:120px;margin-left:5px;" required>
+                                         <option value="All" selected="selected">All</option>
+                                         <option *ngFor="let name of empList" [ngValue]="name" value="{{ name }}">{{name}}</option>
+                                     </select> 
+                                     <div *ngIf="searchpartner.submitted && !name.valid" class="help-block">Employee is required</div>
+                                 </div>
+                             </div>	
+                             <div class="col-sm-1">
+                                 <button class="btn btn-default" type="submit" style="margin-top:23px;margin-left:-35px;">Search</button> 
+                             </div>
+                             </tr>
+                         </tbody>                   
+                     </table>
+                 </form>              
+             </div> 
+             <div class="col-sm-8">
+                 <a> <h2 style="margin-left: -15px;">Registered Clinic</h2> </a> 
+                 <div *ngFor="let x of clinicList" class="row">                     
+                     <br/>				
+                     <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ x.memberID }}</div>
+                     </div>
+                     <!--  name  -->  
+                     <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Status</div>   
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>  
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ x.status }}</div>  
+                     </div> 
+                     <!--  <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name</div>   
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>  
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ x.clinicName }}</div>  
+                     </div> -->
+                     <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Package</div>   
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>  
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ x.noofclinics }}</div>  
+                     </div>
+                     <div class="row">
+                         <div class="col-md-5 col-xs-4 col-lg-3"></div>
+                         <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                         <div class="col-md-6 col-xs-4 col-lg-6">
+                             <a (click)="editcliniconmember(x.memberID,x.noofclinics)" class="btn btn-link">Edit Clinic</a>
+                         </div>
+                     </div>  
+                     <div class="row">
+                         <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>								
+                     </div>
+                 </div>
+             </div>    
+         </div>
+     </div>
+<!-- Clinic and member view end --> 
+     </form>	
+ <!--  Add Clinic on Member div end  -->
+
+<!-- Register Agent Start -->
+<div *ngIf="registeragent" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+
+     <form name="form" (ngSubmit)="f1.form.valid && saveAgent()" #f1="ngForm" novalidate>
+ 
+ <br/>   <br/><br/>                          
+     <div class="col-sm-8">  
+             <h3> <a> Agent Registration Form  </a></h3> <br/>						  
+         <div class="row"> 
+             <div class="col-md-5 col-xs-5 col-lg-5">
+                 <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !name.valid }">
+                     <label  for="AgentName">Agent Name*</label>
+                     <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+                     <div *ngIf="f1.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                 </div>
+             </div>   
+ 
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                     <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !phoneNumber.valid }">
+                                 <label  for="phoneNumber">Phone Number*</label>
+                                 <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
+                                 <div *ngIf="f1.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                     </div> 
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                     <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !emailID.valid }">
+                             <label for="emailID">Email ID*</label>
+                             <input type="text" class="form-control" name="emailID" [(ngModel)]="model.emailID" #emailID="ngModel" required />
+                             <div *ngIf="f1.submitted && !emailID.valid" class="help-block">Agent EmailID is required</div>
+                     </div>
+                 </div>
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !address.valid }">
+                                     <label for="address">Agent Address*</label>
+                                     <input type="text" class="form-control" name="address" [(ngModel)]="model.address" #address="ngModel" required />
+                                     <div *ngIf="f1.submitted && !address.valid" class="help-block">Agent address is required</div>
+                         </div> 
+                     </div>      
+         </div>
+         <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !bankName.valid }">
+                                     <label for="bankName">Bank Name*</label>
+                                     <input type="text" class="form-control" name="bankName" [(ngModel)]="model.bankName" #bankName="ngModel" required />
+                                     <div *ngIf="f1.submitted && !bankName.valid" class="help-block">Bank Name is required</div>
+                         </div> 
+                 </div> 
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                     <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !accountNumber.valid }">
+                             <label for="accountNumber">Account Number*</label>
+                             <input type="text" class="form-control" name="accountNumber" [(ngModel)]="model.accountNumber" #accountNumber="ngModel" required />
+                             <div *ngIf="f1.submitted && !accountNumber.valid" class="help-block">Agent A/c Number is required</div>
+                     </div>
+                 </div>       
+         </div>
+         <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !bankBranchName.valid }">
+                                     <label for="bankBranchName">Bank Branch Name*</label>
+                                     <input type="text" class="form-control" name="bankBranchName" [(ngModel)]="model.bankBranchName" #bankBranchName="ngModel" required />
+                                     <div *ngIf="f1.submitted && !bankBranchName.valid" class="help-block">Bank Branch Name is required</div>
+                         </div> 
+                 </div> 
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                     <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !refEmploy.valid }">
+                         <label for="refEmploy">Reference Employee*</label>
+                         <select class="form-control" name ="refEmploy" [(ngModel)]="model.refEmploy" #refEmploy="ngModel" required>
+                             <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                             </option> 
+                         </select>
+                         <div *ngIf="f1.submitted && !refEmploy.valid" class="help-block">Reference Employee is required</div>
+                 </div>  
+                 </div>  
+         </div>
+         <div class="row">
+             <div class="col-md-5 col-xs-5 col-lg-5">
+                 <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !selectedCountry.valid }">
+                     <label  for="selectedCountry">Contry*</label>
+                     <select class="form-control" name ="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" required>
+                         <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                         </option> 
+                     </select>
+                     <div *ngIf="f1.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                 </div>
+             </div>   
+         </div>
+         <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !agentType.valid }">           
+             <input type="radio" name="agentType" value="Investment Agent" [(ngModel)]="model.agentType" #agentType="ngModel" required />
+             <label for="Investment Agent">Investment Agent</label> &nbsp;&nbsp;&nbsp;        
+             <input type="radio" name="agentType" value="Clinic Agent" [(ngModel)]="model.agentType" #agentType="ngModel" required />
+             <label for="Clinic Agent">Clinic Agent </label> 
+             <div *ngIf="f1.submitted && !agentType.valid" class="help-block">Agent Type is required</div>
+         </div>   
+         <div class="form-group">
+                 <button [disabled]="loading" class="btn btn-primary">Register</button>
+                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                 <button  (click)="onMenuClick('back')" class="btn btn-primary">Back</button>
+                <!--  <a [routerLink]="['/login']" class="btn btn-link">Cancel</a> -->
+ 
+         </div>
+     </div>
+ 
+     </form>  
+ </div>
+
+<!--   Register Agent End -->
+
+ <!-- Agent Details start -->
+     <div *ngIf="viewagent" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+         <br/>
+         <form name="agentform" (ngSubmit)="search.form.valid && searchAgent()" #search="ngForm" novalidate>
+             <br/>
+             <table cellspacing="0" cellpadding="0" border="0" id="box-table-a">
+                 <thead>
+                     <th id="header">Search Criteria</th>
+                 </thead>
+                 <tbody style="color:black">
+                     <tr>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !selectedCountry.valid }">
+                                 <label value="selectedCountry">Country</label>
+                                     <select class="form-control" name="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" style="height:30px;" required>
+                                     <option value="All" selected="selected">All</option>
+                                     <option *ngFor="let itemCountry of countryList" [ngValue]="itemCountry" value="{{ itemCountry }}">{{itemCountry}}</option>
+                                 </select>
+                                 <div *ngIf="search.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                             </div>
+                         </div>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !agentType.valid }">
+                                 <label value="agentType">Agent Type</label>
+                                 <select class="form-control" name="agentType"  [(ngModel)]="model.agentType" #agentType="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>
+                                         <option value="No Agent">No Agent</option>
+                                         <option value="Clinic Agent">Clinic Agent</option>
+                                         <option value="Investment Agent">Investment Agent</option>
+                                 </select>
+                                 <div *ngIf="search.submitted && !agentType.valid" class="help-block">Agent Type is required</div>
+                             </div>
+                         </div>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !agentCode.valid }">
+                                 <label value="agentCode">Agent Code</label>
+                                 <select class="form-control" name="agentCode"  [(ngModel)]="model.agentCode" #agentCode="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>
+                                         <option *ngFor="let itemCode of ledgerList" [ngValue]="itemCode" value="{{ itemCode.agentCode }}">{{itemCode.agentCode}}</option>
+                                 </select>
+                                 <div *ngIf="search.submitted && !agentCode.valid" class="help-block" style="margin-left:-7px;">Agent Code is required</div>
+                             </div>
+                         </div>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !name.valid }">
+                                 <label value="name">Name</label>
+                                 <select class="form-control" name="name"  [(ngModel)]="model.name" #name="ngModel" style="height:30px;" required>
+                                     <option value="All">All</option>
+                                     <option *ngFor="let muscleCar of agList" [ngValue]="muscleCar" value="{{ muscleCar.name }}">{{muscleCar.name}}</option>
+                                 </select>
+                                 <div *ngIf="search.submitted && !name.valid" class="help-block">Agent Name is required</div>   
+                             </div>
+                         </div>	
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !bankName.valid }">
+                                 <label value="bankName">Bank Name</label>
+                                 <select class="form-control" name="bankName"  [(ngModel)]="model.bankName" #bankName="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>
+                                         <option *ngFor="let itemBank of invagList" [ngValue]="itemBank" value="{{ itemBank.bankName }}">{{itemBank.bankName}}</option>
+                                 </select>
+                                 <div *ngIf="search.submitted && !bankName.valid" class="help-block">Bank Name is required</div>
+                             </div>
+                         </div>   
+                         <div class="col-sm-1">
+                             <button class="btn btn-default" type="submit" style="margin:23px 15px 15px 40px;">Search</button> 
+                         </div>
+                     </tr>
+                 </tbody>                   
+             </table>                 
+         </form>	
+         <div class="col-sm-8">    
+             <h3> <a> Agent Information  </a></h3> 
+         </div> 
+         <br/>    
+         <form name="agenttableform">
+             <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+                 <thead>
+                     <tr>
+                         <th>S.No</th>
+                         <th>AgentCode</th>
+                         <th>AgentName</th>
+                         <th>AgentPhoneNumber</th>
+                         <th>AgentEmailID</th>
+                         <th>AgentAddress</th>
+                         <th>AgentCountry</th>
+                         <th>AgentBankName</th>
+                         <th>AgentA/CNumber</th>
+                         <th>AgentBranchName</th>
+                         <th>Agent Type</th>
+                         <th>Ref.Employee</th>
+                         <th>View</th>   
+                         <th>Edit</th>   
+                         <th>Remove</th>     
+                     </tr>
+                 </thead> 
+                 
+                 <tfoot>
+                     <tr>
+         
+                     </tr>
+                 </tfoot>
+                 <tbody>
+                     <tr *ngFor="let aL of agentList"> 
+                         <td>{{ aL.sNo }}</td>
+                         <td>{{ aL.agentCode }}</td>
+                         <td>{{ aL.name }}</td>
+                         <td>{{ aL.phoneNumber }}</td>
+                         <td>{{ aL.emailID }}</td>
+                         <td>{{ aL.address }}</td>
+                         <td>{{ aL.selectedCountry }}</td>
+                         <td>{{ aL.bankName }}</td>
+                         <td>{{ aL.accountNumber }}</td>
+                         <td>{{ aL.bankBranchName }}</td>
+                         <td>{{ aL.agentType | uppercase }}</td>
+                         <td>{{ aL.refEmploy }}</td>
+                         <td> <button class="btn btn-default" (click)="agentAction(aL.Code,'view',aL.primaryKey)">View</button> </td>
+                         <td> <button class="btn btn-default" (click)="agentAction(aL.Code,'edit',aL.primaryKey)">Edit</button> </td>
+                         <td>  <button class="btn btn-default" (click)="agentAction(aL.Code,'remove',aL.primaryKey)">Remove</button>  </td>
+                     </tr> 
+                 </tbody>
+         </table>
+     </form> 
+ </div>   
+ <!-- Agent Details End -->
+
+
+ 
+ <!-- Loading Image Start -->
+ <div class="row">
+    <div class="col-md-5 col-xs-5 col-lg-5">			
+        <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+    </div>
+    <div class="col-md-7 col-xs-7 col-lg-7">    
+    </div>
+</div>
+<!-- Loading Image End -->
+
+<!-- Dialog Box Start -->
+
+<!-- Dialog Box section -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display1}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Information Approved Successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+
+
+    <!--- 2nd dialog box -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display2}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Information Rejected Successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+
+    <!--- 3rd dialog box -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Network issue please try again.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+
+    <!--- 4th dialog box -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display4}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Data was Updated Successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+
+    <!-- Dialog Box5 section -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display6}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Clinic Name Added Successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display11}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <p>No Data for Waiting for Approve Withdraw.</p>    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->  
+
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display13}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onDialogboxClose()"></button>
+                <h4 class="modal-title">Alert </h4>
+            </div>
+            <div class="modal-body">
+                <p>No Data for Waiting for Approve Partner.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onDialogboxClose()" >Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display14}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onDialogboxClose()"></button>
+                <h4 class="modal-title">Alert </h4>
+            </div>
+            <div class="modal-body">
+                <p>No Data for All Partner.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onDialogboxClose()" >Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+<!--- agrentsuccess dialog box -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentsuccess}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Information Successfully Saved.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+<!--- agentfailure dialog box -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentfailure}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Data is not stored please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noagentinfo}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onDialogboxClose()"></button>
+                <h4 class="modal-title">Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>No Data for Information.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onDialogboxClose()" >Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->   
+
+<!--- Clinic Exited  dialog box -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicexit}">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+        <h4 class="modal-title">Alert</h4>
+    </div>
+    <div class="modal-body">
+        <p>Clinic Name is already exist Please try with another Name.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+    </div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+
+<!--- Clinic Exited  dialog box -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentExit}">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+        <h4 class="modal-title">Alert</h4>
+    </div>
+    <div class="modal-body">
+        <p>User Name/Email ID is already exist Please try with another Name.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+    </div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal !-->
+
+    
+
+ <!-- view Agent -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentView}" style="margin-top:3%;height:215%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Agent View</h4>
+             </div>
+             <div class="modal-body">
+                     <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Agent Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentCode }}</div>
+                         </div>
+                     </div><br/>
+                     <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Agent Name</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.name }}</div>
+                         </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Phone Number</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.phoneNumber }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Agent Email</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.emailID }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Agent address</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.address }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Country</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.selectedCountry }}</div>
+                         </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Bank Name</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.bankName }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Account Number</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.accountNumber }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Bank Branch Name</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.bankBranchName }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="form-group">
+                                 <div class="col-md-5 col-xs-5 col-lg-4">Agent Type</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentType }}</div>
+                             </div>
+                     </div><br/>
+                     <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Name/Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.refEmploy }}</div>
+                         </div>
+                     </div><br/>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+     <!-- Modify Agent start -->
+     <form name="agentEditform" (ngSubmit)="agf.form.valid && setAgentUpdate()" #agf="ngForm" novalidate>
+     <div *ngIf="agentEdit">
+         <br/><br/>
+         <div class="col-sm-12 col-lg-8">
+             <br/><br/>
+         </div>
+             <div class="container">
+                 <div  class="row">
+                 <div class="col-sm-8">      
+                     <h3> <a> Modify | Agent Info  </a></h3> <br/>						  
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentCode }}</div>
+                     </div><br/>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Type</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentType }}</div>
+                     </div><br/>			
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !name.valid }">
+                                     <input type="text" class="form-control" name="name" value="{{ this.user.name  }}" [(ngModel)]="this.user.name" #name="ngModel" required />
+                                     <div *ngIf="agf.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Phone Number*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !phoneNumber.valid }">
+                                             <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                                             <div *ngIf="agf.submitted && !phoneNumber.valid" class="help-block">phoneNumber is required</div>
+                                         </div>
+                             </div>
+                     </div>					
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Email*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !emailID.valid }">
+                                             <input type="text" class="form-control" name="emailID" [(ngModel)]="this.user.emailID" #emailID="ngModel" required />
+                                             <div *ngIf="agf.submitted && !emailID.valid" class="help-block">EmailID is required</div>	
+                                     </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Country*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !selectedCountry.valid }">
+                                     <select class="form-control" name ="selectedCountry"  [(ngModel)]="this.user.selectedCountry" #selectedCountry="ngModel" required>
+                                         <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                                         </option> 
+                                     </select>
+                                     <div *ngIf="agf.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Address*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !address.valid }">
+                                             <input type="text" class="form-control" name="address" [(ngModel)]="this.user.address" #address="ngModel" required />
+                                             <div *ngIf="agf.submitted && !address.valid" class="help-block">Agent address is required</div>
+                                         </div>
+                             </div>
+                     </div>							
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent BankName*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !bankName.valid }">
+                                     <input type="text" class="form-control" name="bankName" [(ngModel)]="this.user.bankName" #bankName="ngModel" required />
+                                     <div *ngIf="agf.submitted && !bankName.valid" class="help-block">BankName is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Accont Number*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !accountNumber.valid }">
+                                             <input type="text" class="form-control" name="accountNumber" [(ngModel)]="this.user.accountNumber" #accountNumber="ngModel" required />
+                                             <div *ngIf="agf.submitted && !accountNumber.valid" class="help-block">Agent A/c is required</div>
+                                         </div>
+                             </div>
+                     </div>  
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Bank BranchName*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !bankBranchName.valid }">
+                                     <input type="text" class="form-control" name="bankBranchName" [(ngModel)]="this.user.bankBranchName" #bankBranchName="ngModel" required />
+                                     <div *ngIf="agf.submitted && !bankBranchName.valid" class="help-block">Bank BranchName is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Employee Name/Code*</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !refEmploy.valid }">
+                                 <select class="form-control" name ="refEmploy" [(ngModel)]="this.user.refEmploy" #refEmploy="ngModel" required>
+                                     <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                     </option> 
+                                 </select>
+                                 <div *ngIf="agf.submitted && !refEmploy.valid" class="help-block">Employee Name/Code is required</div>
+                             </div>
+                         </div>
+                     </div>
+                    
+                     <div class="form-group">
+                             <button   class="btn btn-primary">Update</button>
+                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+                             <button  (click)="onMenuClick('backToAgentInfo')" class="btn btn-primary">Back</button>
+
+                         </div>    			
+                 </div>
+             </div>
+         </div>  
+     </div>
+ </form> 
+ <!-- Modify agent end -->
+
+ <!-- Remove Agent start -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemove}" style="margin-top:5%;height:80%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header" style="padding: 10px;">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Confirmation</h4>
+             </div>
+             <div class="modal-body">
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.agentCode }}</div>
+                     </div><br/>	
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Agent Name</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.name }}</div>
+                     </div><br/>	
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default"(click)="onDeleteAgent(user.agentCode,user.primaryKey)">Yes</button>
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()">No</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+ <!-- Remove Agent end -->
+
+ <!-- Yes To Remvoe Agent start -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemovesuccess}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed Agent</h4>
+             </div>
+             <div class="modal-body">  
+                     Agent is deleted Successfully .... 
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemovefail}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">    
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed Agent</h4>
+             </div>
+             <div class="modal-body">
+                     Agent is not deleted .... 
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <!-- Yes To Remove Agent end -->
+
+ <!-- Register Employee Start -->
+ <div *ngIf="registeremploy" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+ <form name="regemployeeform" (ngSubmit)="f2.form.valid && saveEmployee()" #f2="ngForm" novalidate> 
+         <br/><br/><br/>                          
+         <div class="col-sm-8"> 
+                 <h3> <a> Employee Registration Form  </a></h3> <br/>						  
+
+             <div class="row"> 
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !name.valid }">
+                                 <label for="name">Employee Name*</label>
+                                 <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+                                 <div *ngIf="f2.submitted && !name.valid" class="help-block">Employee Name is required</div>
+                         </div>
+                 </div>
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !phoneNumber.valid }">
+                                 <label for="phoneNumber">Phone Number*</label>
+                                 <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
+                                 <div *ngIf="f2.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                     </div> 
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !emailID.valid }">
+                                 <label for="emailID">Email ID*</label>
+                                 <input type="text" class="form-control" name="emailID" [(ngModel)]="model.emailID" #emailID="ngModel" required />
+                                 <div *ngIf="f2.submitted && !emailID.valid" class="help-block">Employee EmailID is required</div>
+                         </div>
+                 </div>
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !address.valid }">
+                                 <label for="address">Address*</label>
+                                 <input type="text" class="form-control" name="address" [(ngModel)]="model.address" #address="ngModel" required />
+                                 <div *ngIf="f2.submitted && !address.valid" class="help-block">Employee address is required</div>
+                         </div> 
+                 </div>      
+             </div>
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !salary.valid }">
+                                 <label for="salary">Employee Salary*</label>
+                                 <input type="text" class="form-control" name="salary" [(ngModel)]="model.salary" #salary="ngModel" required />
+                                 <div *ngIf="f2.submitted && !salary.valid" class="help-block">Employee Salary is required</div>
+                         </div>  
+                 </div>
+                 <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                 <div class="col-md-5 col-xs-5 col-lg-5">
+                     <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !selectedCountry.valid }">
+                         <label  for="selectedCountry">Contry*</label>
+                         <select class="form-control" name ="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" required>
+                             <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                             </option> 
+                         </select>
+                         <div *ngIf="f2.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                     </div>
+                 </div>  
+             </div>
+             <div class="row">  
+                     <div class="col-md-5 col-xs-5 col-lg-5">
+                             <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !join_date.valid }">
+                                     <label for="join_date">Joining Date*</label>
+                                     <input type="date" class="form-control" name="join_date" [(ngModel)]="model.join_date" #join_date="ngModel" required />
+                                     <div *ngIf="f2.submitted && !join_date.valid" class="help-block">Joining Date is required</div>
+                             </div>  
+                     </div>
+                     <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                     <div class="col-md-5 col-xs-5 col-lg-5">
+                             <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !empRole.valid }">
+                                     <label for="empRole">Employee Role*</label>
+                                     <select class="form-control" name ="empRole" [(ngModel)]="model.empRole" #empRole="ngModel" (ngModelChange)="changeEmpRole()" required>
+                                        <option value="Clinic Manager">Clinic Manager</option>
+                                        <option value="Investment Manager">Investment Manager</option>
+                                        <option value="Clinic Non-Manager">Clinic Non-Manager</option>
+                                        <option value="Investment Non-Manager">Investment Non-Manager</option>
+                                     </select>
+                                     <div *ngIf="f2.submitted && !empRole.valid" class="help-block">Employee Role is required</div>
+                             </div>  
+                     </div>
+             </div>
+             <div class="row">         
+                     <div *ngIf="refemp" class="col-md-5 col-xs-5 col-lg-5">
+                             <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !refEmploy.valid }">
+                                     <label for="refEmploy">Reference Employee*</label>
+                                     <select class="form-control" name ="refEmploy" [(ngModel)]="model.refEmploy" #refEmploy="ngModel" required>
+                                         <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                         </option> 
+                                     </select>
+                                     <div *ngIf="f2.submitted && !refEmploy.valid" class="help-block">Reference Employee is required</div>
+                             </div>  
+                     </div>
+             </div>
+             <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !empType.valid }"> 
+                     <input type="radio" name="empType" value="Permanent Employee" [(ngModel)]="model.empType" #empType="ngModel" required />
+                     <label for="Permanent Employee">Permanent Employee</label> &nbsp;&nbsp;&nbsp;        
+                     <input type="radio" name="empType" value="Temporary Employee" [(ngModel)]="model.empType" #empType="ngModel" required />
+                     <label for="Temporary Employee">Temporary Employee </label> 
+                     <div *ngIf="f2.submitted && !empType.valid" class="help-block">Employee Type is required</div>
+             </div>
+             <div class="form-group">
+                     <button [disabled]="loading" class="btn btn-primary">Register</button>
+                     <button  (click)="onMenuClick('back')" class="btn btn-primary">Back</button>
+             </div>
+         </div>
+ </form>
+</div>
+
+<!-- Register Employee End -->
+
+ <!-- Employee Details start -->
+
+ <div *ngIf="viewemploydetails" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+         <br/>
+         <form name="employeeform" (ngSubmit)="searchemp.form.valid && searchEmployee()" #searchemp="ngForm" novalidate>   
+             <br/>
+             <table cellspacing="0" cellpadding="0" border="0" id="box-table-a">
+                 <thead>
+                     <th id="header">Search Criteria</th>
+                 </thead>
+                 <tbody style="color:black">
+                     <tr>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': searchemp.submitted && !selectedCountry.valid }">
+                                 <label value="selectedCountry" style="padding-left:3px;">Country</label>
+                                 <select class="form-control" name="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" style="height:30px;" required>
+                                     <option value="All" selected="selected">All</option>
+                                     <option *ngFor="let itemCountry of countryList" [ngValue]="itemCountry" value="{{ itemCountry }}">{{itemCountry}}</option>
+                                 </select> 
+                                 <div *ngIf="searchemp.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                             </div>
+                         </div>
+                        <div class="col-sm-3">
+                             <div class="form-group" [ngClass]="{ 'has-error': searchemp.submitted && !empType.valid }">
+                                 <label value="empType" style="padding-left:3px;">Employee Type</label>
+                                 <select class="form-control" name="empType"  [(ngModel)]="model.empType" #empType="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>
+                                         <option value="No Employee">No Employee</option>
+                                         <option value="Permanent Employee">Permanent Employee</option>
+                                         <option value="Temporary Employee">Temporary Employee</option>
+                                 </select> 
+                                 <div *ngIf="searchemp.submitted && !empType.valid" class="help-block">Employee Type is required</div>
+                             </div>
+                         </div>
+                         <div class="col-sm-2">
+                             <div class="form-group" [ngClass]="{ 'has-error': searchemp.submitted && !employeeCode.valid }">
+                                 <label value="employeeCode" style="padding-left:3px;">Code</label>
+                                 <select class="form-control" name="employeeCode"  [(ngModel)]="model.employeeCode" #employeeCode="ngModel" style="height:30px;" required>
+                                         <option value="All">All</option>
+                                         <option *ngFor="let itemCode of agList" [ngValue]="itemCode" value="{{ itemCode.employeeCode }}">{{itemCode.employeeCode}}</option>
+                                 </select> 
+                                 <div *ngIf="searchemp.submitted && !employeeCode.valid" class="help-block">Employee Code is required</div>
+                             </div>
+                         </div>
+                         <div class="col-sm-3">
+                             <div class="form-group" [ngClass]="{ 'has-error': searchemp.submitted && !name.valid }">
+                                 <label value="name" style="padding-left:3px;">Name</label>
+                                 <select class="form-control" name="name"  [(ngModel)]="model.name" #name="ngModel" style="height:30px;" required>
+                                     <option value="All">All</option>
+                                     <option *ngFor="let itemName of ledgerList" [ngValue]="itemName" value="{{ itemName.name }}">{{itemName.name}}</option>
+                                 </select> 
+                                 <div *ngIf="searchemp.submitted && !name.valid" class="help-block">Employee Name is required</div>
+                             </div>
+                         </div>  
+                         <div class="col-sm-1">
+                             <button class="btn btn-default" type="submit" style="margin:23px 15px 15px 40px">Search</button> 
+                         </div>
+                     </tr>
+                 </tbody>                   
+             </table>                 
+         </form>	
+         <div class="col-sm-8">    
+             <h3> <a> Employee Details View </a></h3> 
+         </div> 
+         <br/>    
+         <form name="agenttableform">
+             <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+                 <thead>
+                     <tr>
+                         <th>S.No</th>
+                         <th>EmployeeCode</th>
+                         <th>EmployeeName</th>
+                         <th>EmployeePhoneNumber</th>
+                         <th>EmployeeEmail ID</th>
+                         <th>EmployeeAddress</th>
+                         <th>EmployeeType</th>
+                         <th>EmployeeSalary</th>
+                         <th>EmployeeRole</th>
+                         <th>Employeecountry</th>
+                         <th>Ref.Employee</th>
+                         <th>JoiningDate</th>
+                         <th>View</th>
+                         <th>Edit</th>
+                         <th>Remove</th>
+                     </tr>
+                 </thead> 
+                 
+                 <tfoot>
+                     <tr>
+         
+                     </tr>
+                 </tfoot>
+                 <tbody>
+                     <tr *ngFor="let eL of employeeList"> 
+                         <td>{{ eL.sNo }}</td>
+                         <td>{{ eL.employeeCode }}</td>
+                         <td>{{ eL.name }}</td>
+                         <td>{{ eL.phoneNumber }}</td>
+                         <td>{{ eL.emailID }}</td>
+                         <td>{{ eL.address }}</td>
+                         <td>{{ eL.empType }}</td>
+                         <td>{{ eL.salary }}</td>
+                         <td>{{ eL.empRole }}</td>
+                         <td>{{ eL.selectedCountry }}</td>
+                         <td>{{ eL.refEmploy }}</td>
+                         <td>{{ eL.join_date }}</td>
+                         <td> <button class="btn btn-default" (click)="employAction(eL.employeeCode,'view',eL.primaryKey)">View</button> </td>
+                         <td> <button class="btn btn-default" (click)="employAction(eL.employeeCode,'edit',eL.primaryKey)">Edit</button> </td>
+                         <td> <button class="btn btn-default" (click)="employAction(eL.employeeCode,'remove',eL.primaryKey)">Remove</button> </td>
+                     </tr> 
+                 </tbody>
+         </table>
+     </form> 
+ </div>   
+                     
+<!-- Employee Details End -->
+
+     <!-- view Employee -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':employeeView}" style="margin-top:3%;height:215%">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+             <h4 class="modal-title">Employee View</h4>
+         </div>
+         <div class="modal-body">
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.employeeCode }}</div>
+                         </div>
+                     </div><br/>
+                 <div class="row">
+                     <div class="form-group">
+                         <div class="col-md-5 col-xs-5 col-lg-4">Employee Name</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.name }}</div>
+                     </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Phone Number</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.phoneNumber }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Email</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.emailID }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee address</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.address }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Country</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.selectedCountry }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Salary</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.salary }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Joining Date</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.join_date }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                         <div class="form-group">
+                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Type</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.empType }}</div>
+                         </div>
+                 </div><br/>
+                 <div class="row">
+                     <div class="form-group">
+                         <div class="col-md-5 col-xs-5 col-lg-4">Employee Role</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.empRole }}</div>
+                     </div>
+                 </div><br/>
+                 <div *ngIf="refemploycode" class="row">
+                     <div class="form-group">
+                         <div class="col-md-5 col-xs-5 col-lg-4">Ref.Employee Code</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.refEmploy }}</div>
+                     </div>
+                 </div><br/>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+         </div>
+     </div><!-- /.modal-content -->
+ </div><!-- /.modal-dialog -->
+</div><!-- /.modal !--> 
+
+ <!-- Modify Employee View -->
+ <form name="employeeEditform" (ngSubmit)="f.form.valid && setEmployUpdate()" #f="ngForm" novalidate>
+     <div *ngIf="employeeEdit">
+         <br/><br/>
+         <div class="col-sm-12 col-lg-8">
+             <br/><br/>
+         </div>
+             <div class="container">
+                 <div  class="row">
+                 <div class="col-sm-8">      
+                     <h3> <a> Modify | Employee Info  </a></h3> <br/>						  
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.employeeCode }}</div>
+                     </div><br/>	
+                     <div class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Employee Role</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.empRole }}</div>
+                     </div><br/>				
+                     <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Employee Name*</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                                         <input type="text" class="form-control" name="name" value="{{ this.user.name  }}" [(ngModel)]="this.user.name" #name="ngModel" required />
+                                         <div *ngIf="f.submitted && !name.valid" class="help-block">Employee Name is required</div>
+                                     </div>
+                                 </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Phone Number*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneNumber.valid }">
+                                             <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                                             <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">phoneNumber is required</div>
+                                         </div>
+                             </div>
+                     </div>					
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Email*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailID.valid }">
+                                             <input type="text" class="form-control" name="emailID" [(ngModel)]="this.user.emailID" #emailID="ngModel" required />
+                                             <div *ngIf="f.submitted && !emailID.valid" class="help-block">EmailID is required</div>	
+                                     </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Address*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                                             <input type="text" class="form-control" name="address" [(ngModel)]="this.user.address" #address="ngModel" required />
+                                             <div *ngIf="f.submitted && !address.valid" class="help-block">Employee address is required</div>
+                                         </div>
+                             </div>
+                     </div>
+                     <div class="row">  
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Country*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !selectedCountry.valid }">
+                                         <select class="form-control" name ="selectedCountry" [(ngModel)]="this.user.selectedCountry" #selectedCountry="ngModel" required>
+                                             <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                                             </option> 
+                                         </select>
+                                         <div *ngIf="f.submitted && !selectedCountry.valid" class="help-block">Employee Country is required</div>
+                                 </div>  
+                         </div>
+                     </div>							
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Joining Date*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !join_date.valid }">
+                                     <input type="date" class="form-control" name="join_date" [(ngModel)]="this.user.join_date" #join_date="ngModel" required />
+                                     <div *ngIf="f.submitted && !join_date.valid" class="help-block">Joining Date is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Salary*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !salary.valid }">
+                                     <input type="text" class="form-control" name="salary" [(ngModel)]="this.user.salary" #salary="ngModel" required />
+                                     <div *ngIf="f.submitted && !salary.valid" class="help-block">Employee Salary is required</div>
+                                 </div>
+                             </div>
+                     </div>
+                     <div *ngIf="refempcode" class="row">  
+                             <div class="col-md-5 col-xs-5 col-lg-3">Reference Employee*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !refEmploy.valid }">
+                                         <select class="form-control" name ="refEmploy" [(ngModel)]="this.user.refEmploy" #refEmploy="ngModel" required>
+                                             <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                             </option> 
+                                         </select>
+                                         <div *ngIf="f.submitted && !refEmploy.valid" class="help-block">Reference Employee is required</div>
+                                 </div>  
+                         </div>
+                     </div>
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Type*</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">
+                                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !empType.valid }">           
+                                     <input type="radio" name="empType" value="Permanent Employee" [(ngModel)]="this.user.empType" #empType="ngModel" required />
+                                     <label for="Permanent Employee">Permanent Employee</label> &nbsp;&nbsp;&nbsp;        
+                                     <input type="radio" name="empType" value="Temporary Employee" [(ngModel)]="this.user.empType" #empType="ngModel" required />
+                                     <label for="Temporary Employee">Temporary Employee</label> 
+                                     <div *ngIf="f.submitted && !empType.valid" class="help-block">Employee Type is required</div>
+                                     </div>
+                             </div>
+                     </div>
+                     <div class="form-group">
+                             <button   class="btn btn-primary">Update</button>
+                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+
+                         </div>   
+                     
+                    
+
+                 </div>
+             </div>
+         </div>  
+     </div>
+ </form>        
+
+ <!-- Remvoe Agent start -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':employRemove}" style="margin-top:5%;height:80%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header" style="padding: 10px;">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Confirmation</h4>
+             </div>
+             <div class="modal-body">
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.employeeCode }}</div>
+                     </div><br/>	
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Employee Name</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.name }}</div>
+                     </div><br/>	
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default"(click)="onDeleteEmployee(user.employeeCode,user.primaryKey)">Yes</button>
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()">No</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+ <!-- Remove Agent end -->
+ 
+ <!-- Yes To Remvoe Agent start -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':employRemovesuccess}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed  Employee</h4>
+             </div>
+             <div class="modal-body">  
+                     Employee is deleted Successfully.
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':employRemovefail}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">    
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed  Employee</h4>
+             </div>
+             <div class="modal-body">
+                     Employee is not deleted.
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+ <!-- Yes To Remove Employee end -->
+
+<!-- Register Clinic Start -->
+<div *ngIf="registerclinicdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+ <alert></alert>
+ <form name="regclinicform" (ngSubmit)="f3.form.valid && saveClinic()" #f3="ngForm" novalidate> 
+         <br/><br/>
+
+         <br/>                          
+         <div class="col-sm-8">  
+                 <h3> <a> Clinic registration Form  </a></h3> <br/>						  
+
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name*</div>
+                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                 <div class="col-md-6 col-xs-5 col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !clinicName.valid }">
+                         <input type="text" class="form-control" name="clinicName" [(ngModel)]="model.clinicName" #clinicName="ngModel" required />
+                         <div *ngIf="f3.submitted && !clinicName.valid" class="help-block">Clinic is required</div>
+                     </div>
+                 </div>
+             </div>
+         
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                 <div class="col-md-6 col-xs-5 col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !name.valid }">
+                         <select class="form-control" name ="name"  [(ngModel)]="model.name" #name="ngModel" required>
+                                 <option *ngFor="let itemAgent of agList" value="{{ itemAgent }}"> {{ itemAgent }} 
+                                 </option> 
+                         </select>
+                         <div *ngIf="f3.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-3">Employee Name*</div>
+                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                 <div class="col-md-6 col-xs-5 col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !empName.valid }">
+                         <select class="form-control" name ="empName"  [(ngModel)]="model.empName" #empName="ngModel" required>
+                             <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                             </option> 
+                         </select>
+                         <div *ngIf="f3.submitted && !empName.valid" class="help-block">Employee Name is required</div>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- Address -->
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic Address*</div>
+                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                 <div class="col-md-6 col-xs-5 col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !address.valid }">
+                             <input type="text" class="form-control" name="address" [(ngModel)]="model.address" #address="ngModel" required />
+                             <div *ngIf="f3.submitted && !address.valid" class="help-block">Address is required</div>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- Phone Number -->
+
+             <div class="row">
+                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic PhoneNumber*</div>
+                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                 <div class="col-md-6 col-xs-5 col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !phoneNumber.valid }">
+                             <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required/>
+                             <div *ngIf="f3.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                     </div>
+                 </div>
+             </div>
+
+         
+             <div class="form-group">
+                     <button [disabled]="loading" class="btn btn-primary">Register</button>
+                     <button  (click)="onMenuClick('back')" class="btn btn-primary">Back</button>
+             </div>
+         </div>
+ </form>
+</div>
+<!-- Register Clinic End -->
+
+             <!-- view Employee -->
+             <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicView}" style="margin-top:3%;height:205%">
+                 <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                             <h4 class="modal-title">Clinic View</h4>
+                         </div>
+                         <div class="modal-body">
+                                 <div class="row">
+                                         <div class="form-group">
+                                             <div class="col-md-5 col-xs-5 col-lg-4">Clinic Name</div>
+                                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                             <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.name }}</div>
+                                         </div>
+                                     </div><br/>
+                                 <div class="row">
+                                     <div class="form-group">
+                                         <div class="col-md-5 col-xs-5 col-lg-4">Agent Name</div>
+                                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                         <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.agentName }}</div>
+                                     </div>
+                                 </div><br/>
+                                 <div class="row">
+                                         <div class="form-group">
+                                             <div class="col-md-5 col-xs-5 col-lg-4">Employee Name</div>
+                                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                             <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.name }}</div>
+                                         </div>
+                                 </div><br/>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                         </div>
+                     </div><!-- /.modal-content -->
+                 </div><!-- /.modal-dialog -->
+             </div><!-- /.modal !--> 
+
+         <!-- Modify Clinic View -->
+         <form name="clinicEditform" (ngSubmit)="edtclinic.form.valid && setClinicUpdate()" #edtclinic="ngForm" novalidate>
+             <div *ngIf="clinicEdit">
+                 <br/><br/>
+                 <div class="col-sm-12 col-lg-8">
+                     <br/><br/>
+                 </div>
+                     <div class="container">
+                         <div  class="row">
+                         <div class="col-sm-8">      
+                             <h3> <a> Modify | Clinic Info  </a></h3> <br/>						  
+                             <div class="row">
+                                     <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name*</div>
+                                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                     <div class="col-md-6 col-xs-5 col-lg-6">
+                                         <div class="form-group" [ngClass]="{ 'has-error': edtclinic.submitted && !clinicName.valid }">
+                                             <input type="text" class="form-control" name="clinicName" value="{{this.user.clinicName}}" [(ngModel)]="this.user.clinicName" #clinicName="ngModel" required />
+                                             <div *ngIf="edtclinic.submitted && !clinicName.valid" class="help-block">Clinic Name is required</div>
+                                         </div> 
+                                     </div>
+                             </div>		
+                             <div class="row">
+                                     <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                     <div class="col-md-6 col-xs-5 col-lg-6">
+                                         <div class="form-group" [ngClass]="{ 'has-error': edtclinic.submitted && !name.valid }">
+                                             <select class="form-control" name ="name"  [(ngModel)]="this.user.name" #name="ngModel" required>
+                                                     <option *ngFor="let itemAgent of agList" value="{{ itemAgent }}"> {{ itemAgent }} 
+                                                     </option> 
+                                             </select>
+                                             <div *ngIf="edtclinic.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                                         </div>
+                                     </div>
+                             </div>
+                             <div class="row">
+                                     <div class="col-md-5 col-xs-5 col-lg-3">Employee Name*</div>
+                                     <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                     <div class="col-md-6 col-xs-5 col-lg-6">            
+                                         <div class="form-group" [ngClass]="{ 'has-error': edtclinic.submitted && !empName.valid }">
+                                             <select class="form-control" name ="empName" [(ngModel)]="this.user.empName" #empName="ngModel" required>
+                                                 <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                                 </option> 
+                                             </select>            
+                                             <div *ngIf="edtclinic.submitted && !empName.valid" class="help-block">Employee Name is required</div>
+                                         </div>     
+                                     </div>    
+                             </div>
+                              <!-- Address -->
+                             <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic Address*</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': edtclinic.submitted && !address.valid }">
+                                             <input type="text" class="form-control" name="address" value="{{this.user.address}}" [(ngModel)]="this.user.address" #address="ngModel" required />
+                                             <div *ngIf="edtclinic.submitted && !address.valid" class="help-block">Address is required</div>
+                                     </div> 
+                                 </div>
+                             </div>
+         
+                             <!-- Phone Number -->
+         
+                             <div class="row">
+                                 <div class="col-md-5 col-xs-5 col-lg-3">Clinic PhoneNumber*</div>
+                                 <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                 <div class="col-md-6 col-xs-5 col-lg-6">
+                                     <div class="form-group" [ngClass]="{ 'has-error': edtclinic.submitted && !phoneNumber.valid }">
+                                             <input type="text" class="form-control" name="phoneNumber" value="{{this.user.phoneNumber}}" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                                             <div *ngIf="edtclinic.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                                     </div> 
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                     <button   class="btn btn-primary">Update</button>
+                                     <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+                             </div>    			
+                         </div>
+                     </div>
+                 </div>  
+             </div>
+         </form> 
+
+                 <!-- Remove Clinic start -->
+     <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicRemove}" style="margin-top:5%;height:80%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header" style="padding: 10px;">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Confirmation</h4>
+             </div>
+             <div class="modal-body">
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Clinic Code</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.clinicCode }}</div>
+                     </div><br/>	
+                     <div class="row">
+                             <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name</div>
+                             <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                             <div class="col-md-6 col-xs-6 col-lg-6">{{ user.clinicName }}</div>
+                     </div><br/>	
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default"(click)="onDeleteClinic(user.clinicCode,user.primaryKey)">Yes</button>
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()">No</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+ <!-- Remove Agent end -->
+
+ <!-- Yes To Remvoe Agent start -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicRemovesuccess}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed  Clinic</h4>
+             </div>
+             <div class="modal-body">  
+                     Clinic is deleted Successfully.
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicRemovefail}" style="margin-top:3%;height:50%">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">    
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Removed  Clinic</h4>
+             </div>
+             <div class="modal-body">
+                     Clinic is not deleted.
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <!-- Yes To Remove Agent end -->
+
+ <!-- Clinic Add on member start -->
+ 
+ <form name="addclinic1form" (ngSubmit)="clinic1.form.valid && saveClinicOnMember()" #clinic1="ngForm" novalidate>
+     <div *ngIf="addclinicName" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+         <br/><br/>
+         <div class="col-sm-12 col-lg-8">
+             <br/><br/>
+         </div>
+             <div class="container">
+                 <div  class="row">
+                 <div class="col-sm-8">      
+                     <h3> <a> Add Clinic on Partner</a></h3> <br/>	 					  
+                     <div class="row">   
+                         <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">{{ this.model.memberID }}</div>
+                     </div><br/>	
+                     <div *ngIf="c1" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic name 1 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName.valid }">
+                                 <select class="form-control" name ="clinicName"  [(ngModel)]="model.clinicName" #clinicName="ngModel" required>
+                                     <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                     </option> 
+                                 </select>
+                                 <div *ngIf="clinic1.submitted && !clinicName.valid" class="help-block">Clinic Name 1 is required</div>
+                             </div>
+                         </div>
+                     </div>	
+                     
+                     <div *ngIf="c2" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 2 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName2.valid }">
+                                     <select class="form-control" name ="clinicName2"  [(ngModel)]="model.clinicName2" #clinicName2="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName2.valid" class="help-block">Clinic Name 2 is required</div>
+                             </div>
+                         </div>
+                     </div>	
+
+                     <div *ngIf="c3" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 3 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName3.valid }">
+                                     <select class="form-control" name ="clinicName3"  [(ngModel)]="model.clinicName3" #clinicName3="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName3.valid" class="help-block">Clinic Name 3 is required</div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div *ngIf="c4" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 4 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName4.valid }">
+                                     <select class="form-control" name ="clinicName4"  [(ngModel)]="model.clinicName4" #clinicName4="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName4.valid" class="help-block">Clinic Name 4 is required</div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div *ngIf="c5" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 5 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName5.valid }">
+                                     <select class="form-control" name ="clinicName5"  [(ngModel)]="model.clinicName5" #clinicName5="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName5.valid" class="help-block">Clinic Name 5 is required</div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div *ngIf="c6" class="row">  
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 6 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName6.valid }">
+                                     <select class="form-control" name ="clinicName6"  [(ngModel)]="model.clinicName6" #clinicName6="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName6.valid" class="help-block">Clinic Name 6 is required</div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div *ngIf="c7" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 7 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName7.valid }">
+                                     <select class="form-control" name ="clinicName7"  [(ngModel)]="model.clinicName7" #clinicName7="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName7.valid" class="help-block">Clinic Name 7 is required</div>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div *ngIf="c8" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 8 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName8.valid }">
+                                     <select class="form-control" name ="clinicName8"  [(ngModel)]="model.clinicName8" #clinicName8="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName8.valid" class="help-block">Clinic Name 8 is required</div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div *ngIf="c9" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 9 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName9.valid }">
+                                     <select class="form-control" name ="clinicName9"  [(ngModel)]="model.clinicName9" #clinicName9="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName9.valid" class="help-block">Clinic Name 9 is required</div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div *ngIf="c10" class="row">
+                         <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 10 *</div>
+                         <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                         <div class="col-md-6 col-xs-6 col-lg-6">
+                             <div class="form-group" [ngClass]="{ 'has-error': clinic1.submitted && !clinicName10.valid }">
+                                     <select class="form-control" name ="clinicName10"  [(ngModel)]="model.clinicName10" #clinicName10="ngModel"  required>
+                                             <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                             </option> 
+                                     </select>
+                                     <div *ngIf="clinic1.submitted && !clinicName10.valid" class="help-block">Clinic Name 10 is required</div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="form-group">
+                             <button   class="btn btn-primary">Save</button>
+                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+                             <button  (click)="onMenuClick('addclinic')" class="btn btn-primary">Back</button>
+                     </div>       
+                 </div>
+             </div>
+         </div>  
+     </div>
+ </form>
+     <!-- Clinic Add on member end -->     
+
+     <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noreportagentinfo}">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                     <h4 class="modal-title">Alert</h4>
+                 </div>
+                 <div class="modal-body">
+                     <p>No report for these two days.</p> 
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+     </div><!-- /.modal !-->
+     
+     <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noclinic}">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                     <h4 class="modal-title">Alert</h4>
+                 </div>
+                 <div class="modal-body">
+                     <p>No Clinics are registered.Please register the Clinic Name.</p> 
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+     </div><!-- /.modal !--> 
+
+ <!-- Newly Added -->
+
+     <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nomanager}">
+         <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Alert</h4>
+             </div>
+             <div class="modal-body">
+                 <p>No Manager are registered.Please register the Manager.</p> 
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !--> 
+
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nosalesreport}">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                 <h4 class="modal-title">Alert</h4>
+             </div>
+             <div class="modal-body">
+                 <p>No Report for this month.</p> 
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal !-->
+
+<!-- Edit Clinic on member start -->
+<form name="editclinicform" (ngSubmit)="updateclinic.form.valid && updateClinicOnPartner()" #updateclinic="ngForm" novalidate>
+    <div *ngIf="editclinicName" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+        <br/><br/>
+        <div class="col-sm-12 col-lg-8">
+            <br/><br/>   
+        </div>
+            <div class="container">
+                <div  class="row">
+                <div class="col-sm-8">      
+                    <h3> <a> Edit Clinic on Partner</a></h3> <br/>	 					  
+                    <div class="row">   
+                        <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">{{ this.model.memberID }}</div>
+                    </div><br/>	
+                    <div *ngIf="eC1" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic name 1 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName.valid }">
+                                <select class="form-control" name ="clinicName"  [(ngModel)]="model.clinicName" #clinicName="ngModel" required>
+                                    <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                    </option> 
+                                </select>
+                                <div *ngIf="updateclinic.submitted && !clinicName.valid" class="help-block">Clinic Name 1 is required</div>
+                            </div>
+                        </div>
+                    </div>	
+                    
+                    <div *ngIf="eC2" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 2 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName2.valid }">
+                                    <select class="form-control" name ="clinicName2"  [(ngModel)]="model.clinicName2" #clinicName2="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName2.valid" class="help-block">Clinic Name 2 is required</div>
+                            </div>
+                        </div>
+                    </div>	
+
+                    <div *ngIf="eC3" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 3 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName3.valid }">
+                                    <select class="form-control" name ="clinicName3"  [(ngModel)]="model.clinicName3" #clinicName3="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName3.valid" class="help-block">Clinic Name 3 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="eC4" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 4 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName4.valid }">
+                                    <select class="form-control" name ="clinicName4"  [(ngModel)]="model.clinicName4" #clinicName4="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName4.valid" class="help-block">Clinic Name 4 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="eC5" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 5 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName5.valid }">
+                                    <select class="form-control" name ="clinicName5"  [(ngModel)]="model.clinicName5" #clinicName5="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName5.valid" class="help-block">Clinic Name 5 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="eC6" class="row">  
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 6 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName6.valid }">
+                                    <select class="form-control" name ="clinicName6"  [(ngModel)]="model.clinicName6" #clinicName6="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName6.valid" class="help-block">Clinic Name 6 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="eC7" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 7 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName7.valid }">
+                                    <select class="form-control" name ="clinicName7"  [(ngModel)]="model.clinicName7" #clinicName7="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName7.valid" class="help-block">Clinic Name 7 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="eC8" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 8 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName8.valid }">
+                                    <select class="form-control" name ="clinicName8"  [(ngModel)]="model.clinicName8" #clinicName8="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName8.valid" class="help-block">Clinic Name 8 is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="eC9" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 9 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName9.valid }">
+                                    <select class="form-control" name ="clinicName9"  [(ngModel)]="model.clinicName9" #clinicName9="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName9.valid" class="help-block">Clinic Name 9 is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="eC10" class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Clinic Name 10 *</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': updateclinic.submitted && !clinicName10.valid }">
+                                    <select class="form-control" name ="clinicName10"  [(ngModel)]="model.clinicName10" #clinicName10="ngModel"  required>
+                                            <option *ngFor="let itemClinic of clinicNameList" value="{{ itemClinic }}"> {{ itemClinic }} 
+                                            </option> 
+                                    </select>
+                                    <div *ngIf="updateclinic.submitted && !clinicName10.valid" class="help-block">Clinic Name 10 is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button   class="btn btn-primary">Update</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+                        <button  (click)="onMenuClick('backregisterclinic')" class="btn btn-primary">Back</button>
+                    </div>       
+                </div>
+            </div>   
+        </div>  
+    </div>
+</form>
+
+<!-- Clinic Add on member end --> 
+
+<!-- user Guide Div Start -->
+    <form name="guideform">
+        <div *ngIf="userguide" id="page-wrapper" class="alldiv" style="-webkit-overflow-scrolling: touch;">
+            <br/>    
+            <h3> <a> TRIO User Guide  </a></h3> 						   
+            <br/>
+            <div class="container">
+                <br/>
+                <p>User Guide In Progress</p>
+            </div>     
+        </div>
+    </form>
+<!-- user Guide Div End -->
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noSearchinfo}">
+   <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+               <h4 class="modal-title">Alert</h4>
+           </div>
+           <div class="modal-body">
+               <p>No Data for Information.</p>
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+           </div>
+       </div>
+   </div>
+</div>   
+
+ 
+    </section>     
+     </div>
+ </div>    
+
+
+   
+ 
+ 

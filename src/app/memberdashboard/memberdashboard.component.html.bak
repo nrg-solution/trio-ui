@@ -1,0 +1,555 @@
+<div class="wy-grid-for-nav">
+    <nav class="navbar navbar-fixed-top" >
+      <div class="navbar-header">
+        <a class="pointer" (click)="memberhome()">
+        <img [src]="imgsrc"> </a>
+      </div>
+
+      <ul class="nav navbar-right navbar-top-links">
+        <li class="dropdown navbar-inverse">
+        <a class="notif"  data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>  <b class="caret"></b> 
+        </a>
+        <ul class="dropdown-menu dropdown-alerts">
+            <li>     
+                <!-- <a href="#">  -->
+                <a>
+                    <div>
+                        <i class="fa fa-comment fa-fw"></i> Approved Withdraw Alert
+                        <span class="pull-right text-muted small">4 minutes ago</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <!-- <a href="#">  -->
+                <a>
+                    <div>
+                        <i class="fa fa-twitter fa-fw"></i> Rejected Withdraw Alert
+                        <span class="pull-right text-muted small">12 minutes ago</span>
+                    </div>
+                </a>
+            </li>
+        </ul>  
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> Partner <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a (click)="clickProfile()"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            </li>
+            <li class="divider"></li>
+            <li><a [routerLink]="['/login']">
+                <i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
+
+        </ul>
+    </li>
+  </ul>
+<!-- /.navbar-top-links -->
+
+
+</nav>  
+    
+    <div *ngIf="memberDashDiv" id="page-wrapper" style="cursor: pointer;">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <h3 class="page-header"> <a> TRIO Partner Dashboard </a></h3>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div>Ledger</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="pull-left"> <a (click)="onMenuClick('ledger')">Click here </a></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+    
+                        <div class="clearfix"></div>
+                    </div>    
+                </div>
+            </div>
+    
+    
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div>Withdraw</div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="panel-footer">
+                            <span class="pull-left"> <a (click)="onMenuClick('withdraw')">Click here </a></span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+    
+                            <div class="clearfix"></div>
+                        </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div>My Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="panel-footer">
+                                <span class="pull-left"> <a (click)="onMenuClick('profile')">Click here </a></span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+    
+                            <div class="clearfix"></div>
+                        </div>
+                </div>
+            </div>
+    
+    </div>
+    
+    </div>
+    
+    <!-- Ledger View Start -->		
+    <form name="ledgerform">
+        <div *ngIf="ledgerdiv" id="page-wrapper" style="cursor: pointer;">  
+          <br/><br/>   
+            <div class="container">
+              <br/>
+              <div *ngFor="let lm of ledgerList"  class="row">
+                <div class="col-sm-8">      
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">
+                            <h3> <a> Quarter </a> </h3> 
+                        </div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">
+                            <h3> <a>:</a> </h3> 
+                        </div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                            <h3> <a>{{ lm.sNo }} </a> </h3> 
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Account Type</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.actType }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Invested Amount</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.totalAmount }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Percentage</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.percentage }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Withdrawal Amount</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.withdrawAmount }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Withdrawal Date</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.withdrawDate }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Enrollment Date</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.enrollmentDate }}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 col-xs-5 col-lg-3">Investment Date</div>
+                            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                            <div class="col-md-6 col-xs-5 col-lg-6">{{ lm.investmentDate }}</div>
+                    </div>                                   
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>
+                    </div>      
+                </div>
+              </div>
+            </div>     
+        </div>
+    </form>
+    
+    <form name="form6" (ngSubmit)="f.form.valid && updateMyProfile()" #f="ngForm" novalidate>
+        <div *ngIf="myProfile" id="page-wrapper" style="cursor: pointer;">
+          <br/><br/>
+          <div class="container">
+            <br/>
+            <div class="col-lg-7 col-xs-9 col-sm-9"></div>
+            <div class="col-lg-5 col-xs-3 col-sm-3">
+              <h4><a (click)="onMenuClick('ProfileEdit')"> Edit </a></h4>
+            </div>
+              <div  class="row">
+              <div class="col-sm-8">      
+                <h3> <a> My Profile view  </a></h3> <br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+                </div><br/>		
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">First Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.firstName }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Last Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.lastName }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Partner ID </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.memberID }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Partner Type</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.actType }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Bank Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.bankName }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Bank A/C Number</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.bankAcctNumber }}</div>
+                </div><br/>			
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Phone nNmber</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.phoneNumber }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.emailID }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">NPWP Number</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.npwpNumber }}</div>						
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Country</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.country }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">No.of Clinics</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.noofclinics }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Total Amount</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6"><p class="text-info">{{ this.user.totalAmount }}</p></div>						
+                </div><br/>
+              </div>
+              </div>
+          </div> 
+        
+        </div>
+        
+        <div *ngIf="profilediv" id="page-wrapper" style="cursor: pointer;">
+          <br/><br/>
+          <div class="col-sm-12 col-lg-8">
+            <alert></alert>
+          </div>
+            <div class="container">
+              <br/>
+              <!-- <p> My Information view </p> -->
+              <div  class="row">
+              <div class="col-sm-8">      
+                <h3> <a> My Profile Edit  </a></h3> <br/>						  
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+                </div><br/>			
+                <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Partner ID </div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.memberID }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Partner Type</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.actType }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Clinic Package</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.noofclinics }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Total Amount</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.totalAmount }}</div>
+                </div><br/>			
+                <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">First Name</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                          <input type="text" class="form-control" name="firstName" value="{{ this.user.firstName  }}" [(ngModel)]="this.user.firstName" #firstName="ngModel" required />
+                          <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Last Name</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                              <input type="text" class="form-control" name="lastName" [(ngModel)]="this.user.lastName" #lastName="ngModel" required />
+                              <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+                            </div>
+                      </div>
+                  </div>					
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Bank Name</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankName.valid }">
+                              <input type="text" class="form-control" name="bankName" [(ngModel)]="this.user.bankName" #bankName="ngModel" required />
+                              <div *ngIf="f.submitted && !bankName.valid" class="help-block">Bank Name is required</div>	
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Bank A/C Number</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankAcctNumber.valid }">
+                              <input type="text" class="form-control" name="bankAcctNumber" [(ngModel)]="this.user.bankAcctNumber" #bankAcctNumber="ngModel" required />
+                              <div *ngIf="f.submitted && !bankAcctNumber.valid" class="help-block">A/C is required</div>
+                            </div>
+                      </div>
+                  </div>							
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Phone Number</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneNumber.valid }">
+                          <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                          <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">Number is required</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailID.valid }">
+                              <input type="text" class="form-control" name="emailID" [(ngModel)]="this.user.emailID" #emailID="ngModel" required />
+                              <div *ngIf="f.submitted && !emailID.valid" class="help-block">Email ID is required</div>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">NPWP Number</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !npwpNumber.valid }">
+                                <input type="text" class="form-control" name="npwpNumber" [(ngModel)]="this.user.npwpNumber" #npwpNumber="ngModel" required />
+                                <div *ngIf="f.submitted && !npwpNumber.valid" class="help-block">Npwp Number is required</div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-3">Country</div>
+                      <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                      <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !selectedCountry.valid }">
+                          <select class="form-control" name ="selectedCountry"  [(ngModel)]="this.user.country" #selectedCountry="ngModel" required>
+                            <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                            </option> 
+                          </select>
+                          <div *ngIf="f.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <button  (click)="onMenuClick('myprofileback')" class="btn btn-primary">Back</button>
+                      <button   class="btn btn-primary">Update</button>
+                      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  </div>    			
+                </div>
+                </div>
+            </div>  
+          </div>
+        </form>
+    
+        <form name="withdrawform">
+            <div *ngIf="withdrawdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">		
+              <br/><br/>
+                <div class="container">
+                <br/>
+                          <div *ngFor="let wd of ledgerList"  class="row">
+                            <div class="col-sm-8">      
+                                <div class="row">
+                                        <div class="col-md-5 col-xs-5 col-lg-3">
+                                                <h3> <a> Quarter</a> </h3>
+                                        </div>
+                                        <div class="col-md-1 col-xs-1 col-lg-1">
+                                            <h3><a>:</a></h3>
+                                        </div>
+                                        <div class="col-md-6 col-xs-5 col-lg-6">
+                                            <h3><a>{{ wd.sNo }}</a></h3>
+                                        </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Withdrawal Date</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-5 col-lg-6">{{ wd.withdrawDate }}</div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-5 col-xs-5 col-lg-3">Withdrawal Amount</div>
+                                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                        <div class="col-md-6 col-xs-5 col-lg-6">{{ wd.withdrawAmount }}</div>
+                                </div>
+                                
+                                <div class="row">
+                                        <div class="col-md-5 col-xs-5 col-lg-3">Partner Number</div>
+                                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                        <div class="col-md-6 col-xs-5 col-lg-6">{{ wd.memberID }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Status</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-5 col-lg-6">{{ wd.status }}</div>
+                                </div><br/>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-lg-7" style="text-align: center;">
+                                        <button (click)="openWithdraw(wd.memberID,wd.withdrawDate,wd.wstatus)" class="btn btn-primary"
+                                             style="padding-top:1px;padding-bottom:2px;">{{ wd.wstatus }}</button> 
+                                    </div>
+                                </div>						
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 col-lg-8"><hr></div>
+                                </div> 		
+                            </div>
+                          </div>
+                        </div>     
+                    </div>
+                </form>
+    
+        <!-- Network issue Dialog Box Start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Error</h4>
+              </div>
+              <div class="modal-body">
+                <p>Network issue please try again.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+    <!-- Network issue Dialog Box End -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display4}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <p>Updated Successfully.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+    
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display9}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <p>Your request is processed You get Approval Email.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal !-->
+    
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display10}">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Alert</h4>
+          </div>
+          <div class="modal-body">
+            <p>Sorry you Can not Withdraw this Amount at this movement Please wait...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+      </div><!-- /.modal !-->
+
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display11}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Alert</h4>
+              </div>
+              <div class="modal-body">
+                <p>Sorry you have already requested for Withdraw. Please wait...</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+          </div><!-- /.modal !-->
+    
+           <!-- Loading Image Start -->
+        <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-5">			
+                    <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+                </div>
+                <div class="col-md-7 col-xs-7 col-lg-7">    
+                </div>
+            </div>
+            <!-- Loading Image End -->
+    
+    </div>

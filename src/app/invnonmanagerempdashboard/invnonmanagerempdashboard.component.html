@@ -1,0 +1,374 @@
+<div class="wy-grid-for-nav">
+    <nav class="navbar navbar-fixed-top" >
+        <div class="navbar-header">
+          <a class="pointer" (click)="employeehome()">
+          <img [src]="imgsrc"> </a>
+        </div>
+  
+        <ul class="nav navbar-right navbar-top-links">
+          <li class="dropdown navbar-inverse">
+            <a class="notif"  data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <b class="caret"></b> 
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>     
+                    <!-- <a href="#">  -->
+                    <a>      
+                        <div>
+                            <i class="fa fa-comment fa-fw"></i> Alert for New Agent
+                            <span class="pull-right text-muted small">4 minutes ago</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>  
+          </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i> Employee <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                  <li><a (click)="clickProfile()"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a [routerLink]="['/login']">
+                      <i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                  </li>
+              </ul>
+          </li>
+        </ul>
+      <!-- /.navbar-top-links -->
+  </nav>   
+  
+  <div *ngIf="employeeDashDiv" id="page-wrapper" style="cursor: pointer;">
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <h3 class="page-header"> <a> TRIO Investment Non-Manager Employee Dashboard </a></h3>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Sales Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-left"> <a (click)="onMenuClick('empreport')">Click here </a></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+  
+                    <div class="clearfix"></div>
+                </div>    
+            </div>
+        </div>
+  
+        <div class="col-lg-3 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-comments fa-5x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div>My Profile</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="panel-footer">
+                  <span class="pull-left"> <a (click)="onMenuClick('profile')">Click here </a></span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+  
+                  <div class="clearfix"></div>
+              </div>    
+          </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  <!-- Ledger View Start -->		
+  
+  <form name="profileform" (ngSubmit)="f.form.valid && updateEmpProfile()" #f="ngForm" novalidate>
+      <div *ngIf="myProfile" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+        <br/><br/>
+        <div class="container">
+          <br/>
+          <div class="col-lg-7 col-xs-9 col-sm-9"></div>
+          <div class="col-lg-5 col-xs-3 col-sm-3">
+            <h4><a (click)="onMenuClick('ProfileEdit')"> Edit </a></h4>
+          </div>
+            <div  class="row">
+            <div class="col-sm-8">      
+              <h3> <a> My Profile view  </a></h3> <br/>
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Name</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.name }}</div>  
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Code</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.employeeCode }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Phone Number</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.phoneNumber }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.emailID }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Address</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.address }}</div>
+              </div><br/>
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Salary</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.salary }}</div>
+              </div><br/> 
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Type</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.empType }}</div>
+              </div><br/>           
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Role</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.empRole }}</div>
+              </div><br/>
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Reference Employee</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.refEmploy }}</div>
+              </div><br/>	
+            </div>
+            </div>
+        </div> 
+      
+      </div>
+      
+      <div *ngIf="profilediv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+        <br/><br/>
+        <div class="col-sm-12 col-lg-8"></div>
+          <div class="container">
+            <br/>
+            <!-- <p> My Information view </p> -->
+            <div  class="row">
+            <div class="col-sm-8">      
+              <h3> <a> My Profile Edit  </a></h3> <br/>						  
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+              </div><br/>			
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Employee Code</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.employeeCode }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.emailID }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Employee Role</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.empRole }}</div>
+              </div><br/>	
+              <div class="row">
+                  <div class="col-md-5 col-xs-5 col-lg-3">Reference Employee</div>
+                  <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                  <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.refEmploy }}</div>
+              </div><br/>			
+              <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Employee Name*</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                        <input type="text" class="form-control" name="name" value="{{ this.user.name  }}" [(ngModel)]="this.user.name" #name="ngModel" required />
+                        <div *ngIf="f.submitted && !name.valid" class="help-block">Employee Name is required</div>
+                      </div>
+                    </div>
+                </div>				  
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Phone Number*</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneNumber.valid }">
+                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                        <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Address*</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                            <input type="text" class="form-control" name="address" [(ngModel)]="this.user.address" #address="ngModel" required />
+                            <div *ngIf="f.submitted && !address.valid" class="help-block">Address is required</div>
+                        </div>
+                    </div>
+                </div>
+                                    
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Employee Salary*</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !salary.valid }">
+                            <input type="text" class="form-control" name="salary" [(ngModel)]="this.user.salary" #salary="ngModel" required />
+                            <div *ngIf="f.submitted && !salary.valid" class="help-block">Employee Salary is required</div>	
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Employee Type*</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !empType.valid }">           
+                            <input type="radio" name="empType" value="Permanent Employee" [(ngModel)]="this.user.empType" #empType="ngModel" required />
+                            <label for="Permanent Employee">Permanent Employee</label> &nbsp;&nbsp;&nbsp;        
+                            <input type="radio" name="empType" value="Temporary Employee" [(ngModel)]="this.user.empType" #empType="ngModel" required />
+                            <label for="Temporary Employee">Temporary Employee</label> 
+                            <div *ngIf="f.submitted && !empType.valid" class="help-block">Employee Type is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button  (click)="onMenuClick('myprofileback')" class="btn btn-primary">Back</button>
+                    <button   class="btn btn-primary">Update</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>    			
+              </div>
+              </div>
+          </div>  
+        </div>
+      </form>
+  
+      <form name="reportform"> 
+          <div *ngIf="empnonManagerreportdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+              <br/><br/>                        
+              <div class="col-sm-8">    
+                  <h3> <a> Employee Sales Report View  </a></h3> 
+                  <br/>
+                  <button (click)="printToCart()" class="btn btn-primary">Download Excel</button>
+                  <br/><br/>
+              </div>
+              <table cellpadding="0" cellspacing="0" border="0" 
+                  class="datatable table table-striped table-bordered" id="empNonManagerReport" #empNonManagerReport>
+                  <thead>
+                      <tr>
+                          <th>S.No</th>
+                          <th>EmployeeCode</th>
+                          <th>EmployeeName</th>
+                          <th>EmployeePhoneNumber</th>                                
+                          <th>EmployeeRole</th> 
+                          <th>Ref.EmployeeCode</th>
+                          <th>CreatdDate</th> 
+                          <th>AgentName</th>
+                          <th>AgentCode</th> 
+                          <th>AgentType</th>  
+                          <th>ClinicName</th> 
+                          <th>ClinicCode</th>                                         
+                      </tr>
+                  </thead> 
+                  
+                  <tbody>
+                      <tr *ngFor="let eRL of empReportList"> 
+                          <td>{{ eRL.sNo }}</td>
+                          <td>{{ eRL.employeeCode }}</td>
+                          <td>{{ eRL.name }}</td>
+                          <td>{{ eRL.phoneNumber }}</td>
+                          <td>{{ eRL.empRole }}</td>
+                          <td>{{ eRL.refEmploy }}</td>
+                          <td>{{ eRL.createdDate }}</td>
+                          <td>{{ eRL.agentName }}</td>
+                          <td>{{ eRL.agentCode }}</td>  
+                          <td>{{ eRL.agentType }}</td>
+                          <td>{{ eRL.clinicName }}</td>  
+                          <td>{{ eRL.clinicCode }}</td>                            
+                      </tr> 
+                  </tbody>
+              </table> 
+          </div>
+      </form>
+  
+      <!-- Network issue Dialog Box Start -->
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Error</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>Network issue please try again.</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+    
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noempreport}">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Error</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>No Data for Employee Report.</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':updateprofile}">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Confirmation</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>Employee Details was updated successfully.</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Loading Image Start -->
+      <div class="row">
+          <div class="col-md-5 col-xs-5 col-lg-5">			
+              <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+          </div>
+          <div class="col-md-7 col-xs-7 col-lg-7"> </div>
+      </div>
+      <!-- Loading Image End -->
+  
+  </div>

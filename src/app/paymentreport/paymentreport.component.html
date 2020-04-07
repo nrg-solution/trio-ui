@@ -1,0 +1,131 @@
+<app-header></app-header>
+<br/> <br/> 
+<form name="paymentreportform" (ngSubmit)="paymereport.form.valid && getPaymentReport()"
+    #paymereport="ngForm" novalidate> 
+    <div id="wrapper1" style="-webkit-overflow-scrolling: touch;">                  
+        <br/>                       
+        <div class="col-sm-8">  
+            <h3> <a> Payment Report View  </a></h3>  
+            <br/>    
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Payment Status*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': paymereport.submitted && !payStatus.valid }">
+                            <select class="form-control"  name ="payStatus" [(ngModel)]="model.payStatus" #payStatus="ngModel" required>
+                                    <option value="All">All</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Not-Paid">Not-Paid</option>
+                            </select>
+                            <div *ngIf="paymereport.submitted && !payStatus.valid" class="help-block">Payment Status is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">From Date*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': paymereport.submitted && !fromDate.valid }">
+                            <input type="date" class="form-control" name="fromDate" [(ngModel)]="model.fromDate" #fromDate="ngModel" required />
+                            <div *ngIf="paymereport.submitted && !fromDate.valid" class="help-block">From Date is required</div>
+                    </div>
+                </div>
+            </div>   
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">To Date*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': paymereport.submitted && !toDate.valid }">
+                                <input type="date" class="form-control" name="toDate" [(ngModel)]="model.toDate" #toDate="ngModel" required />
+                                <div *ngIf="paymereport.submitted && !toDate.valid" class="help-block">To Date is required</div>
+                        </div>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                    <button class="btn btn-primary">Search</button>
+                    <button (click)="backToReport()" class="btn btn-primary">Back</button>
+            </div>
+        </div>
+  </div>
+</form>            
+    
+<div *ngIf="paymetable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+
+    <div class="col-sm-8">
+        <button (click)="printToCart()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;" 
+					class="datatable table table-striped table-bordered" id="paymentReport" #paymentReport>
+          <thead>
+              <tr>
+                  <th>S.No</th>  
+                  <th>PartnerName</th>  
+                  <th>PartnerCode</th>
+                  <th>PartnerPhoneNumber</th> 
+                  <th>PartnerEmailID</th> 
+                  <th>PartnerBankName</th>
+                  <th>PartnerA/cNumber</th>
+                  <th>PartnerCountry</th>
+                  <th>CreatedDate</th>
+                  <th>TotalAmount</th> 
+                  <th>ClinicStatus</th>                                
+                  <th>PartnerStatus</th>                                                            
+              </tr>   
+          </thead> 
+          
+          <tbody>    
+              <tr *ngFor="let pRL of allMemList"> 
+                  <td>{{ pRL.sNo }}</td>
+                  <td>{{ pRL.firstName }}</td>
+                  <td>{{ pRL.memberID }}</td>
+                  <td>{{ pRL.phoneNumber }}</td>
+                  <td>{{ pRL.emailID }}</td>
+                  <td>{{ pRL.bankName }}</td>
+                  <td>{{ pRL.bankAcctNumber }}</td>
+                  <td>{{ pRL.selectedCountry }}</td>
+                  <td>{{ pRL.investmentDate }}</td>
+                  <td>{{ pRL.totalAmount }}</td>
+                  <td>{{ pRL.bookingStatus }}</td>
+                  <td>{{ pRL.status }}</td>                            
+              </tr> 
+          </tbody>
+      </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Network issue please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noreportagentinfo}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>No report for these two days.</p> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>

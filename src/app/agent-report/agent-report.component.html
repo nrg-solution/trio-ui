@@ -1,0 +1,60 @@
+<app-header></app-header>
+<br/>
+<div *ngIf="reportmenu2" id="page-wrapper" style="cursor: pointer;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header"> <a> TRIO Agent Report Dashboard </a></h2>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+            <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Clinic Agent report</div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="panel-footer">
+                                <span class="pull-left"><a [routerLink]="['/clinicagentreport']" >Click here</a></span>
+                                <!-- <span class="pull-left"><a (click)="onMenuClick('report1')">Click here</a></span> -->
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                </div>
+                
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Investment Agent report</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <span class="pull-left"><a [routerLink]="['/investagentreport']" >Click here</a></span>
+                            <!-- <span class="pull-left"><a (click)="onMenuClick('report2')">Click here</a></span> -->
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                
+                                <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row"></div>
+                <button (click)="backToReport()" style="margin-left:15px;" class="btn btn-primary">Back</button>
+    </div>
+
+</div>

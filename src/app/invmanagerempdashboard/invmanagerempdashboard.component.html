@@ -1,0 +1,970 @@
+
+<div class="wy-grid-for-nav">
+
+    <nav class="navbar navbar-fixed-top" >
+        <div class="navbar-header">
+   
+<a class="pointer" (click)="employeehome()">
+<img [src]="imgsrc"> </a>
+     </div>
+                
+ <ul class="nav navbar-right navbar-top-links">
+        <li class="dropdown navbar-inverse">
+            <a class="notif"  data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <b class="caret"></b> 
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>     
+                    <a>      
+                        <div>
+                            <i class="fa fa-comment fa-fw"></i> Alert for New Agent
+                            <span class="pull-right text-muted small">4 minutes ago</span>
+                        </div>
+                    </a>
+                </li> 
+            </ul>  
+        </li>
+        <li class="dropdown">
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                 <i class="fa fa-user fa-fw"></i> Employee <b class="caret"></b>
+             </a>
+             <ul class="dropdown-menu dropdown-user">
+                
+
+                 <li><a (click)="clickUser()"><i class="fa fa-user fa-fw"></i> User Guide</a>
+                 </li>
+                 <li class="divider"></li>
+                 <li><a [routerLink]="['/login']">
+                     <i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                 </li>
+             </ul>
+         </li>
+     </ul>
+     <!-- /.navbar-top-links -->
+ 
+   
+ </nav>    
+ 
+ <div *ngIf="adminDashDiv" id="page-wrapper" style="cursor: pointer;">
+     <div class="row">
+         <div class="col-lg-12">
+             <h2 class="page-header"> <a> TRIO Investment Manager Employee Dashboard </a></h2>
+         </div>
+         <!-- /.col-lg-12 -->
+     </div>
+     <!-- /.row -->
+     <div class="row"> 
+ 
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">  
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>Register Agent</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                         <span class="pull-left"> <a (click)="onMenuClick('registeragent')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+         
+         <div class="col-lg-3 col-md-6">
+             <div class="panel panel-primary">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <i class="fa fa-comments fa-5x"></i>
+                         </div>
+                         <div class="col-xs-9 text-right">
+                             <div>View Agent</div>
+                         </div>
+                     </div>
+                 </div>
+                     <div class="panel-footer">
+                             <span class="pull-left"> <a (click)="onMenuClick('getAgentInfo')">Click here </a></span>
+                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                         <div class="clearfix"></div>
+                     </div>
+             </div>
+         </div>
+            
+         <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Agent Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-left"><a [routerLink]="['/agent-report']" >Click here</a></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Partner Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-left"><a [routerLink]="['/paymentreport']" >Click here</a></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Sales Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-left"> <a (click)="empReport()">Click here </a></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div> 
+        
+
+         </div>
+ </div>
+
+ <div class="row">
+       <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+   
+       <!-- Register Agent Start -->
+       <div *ngIf="registeragent" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+       
+            <form name="form" (ngSubmit)="f1.form.valid && saveAgent()" #f1="ngForm" novalidate>
+        
+        <br/>   <br/><br/>                          
+            <div class="col-sm-8">  
+                    <h3> <a> Agent Registration Form  </a></h3> <br/>						  
+                <div class="row"> 
+                    <div class="col-md-5 col-xs-5 col-lg-5">
+                        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !name.valid }">
+                            <label  for="AgentName">Agent Name*</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+                            <div *ngIf="f1.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                        </div>
+                    </div>   
+        
+                        <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !phoneNumber.valid }">
+                                        <label  for="phoneNumber">Phone Number*</label>
+                                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
+                                        <div *ngIf="f1.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !emailID.valid }">
+                                    <label for="emailID">Email ID*</label>
+                                    <input type="text" class="form-control" name="emailID" [(ngModel)]="model.emailID" #emailID="ngModel" required />
+                                    <div *ngIf="f1.submitted && !emailID.valid" class="help-block">Agent EmailID is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                                <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !address.valid }">
+                                            <label for="address">Agent Address*</label>
+                                            <input type="text" class="form-control" name="address" [(ngModel)]="model.address" #address="ngModel" required />
+                                            <div *ngIf="f1.submitted && !address.valid" class="help-block">Agent address is required</div>
+                                </div> 
+                            </div>      
+                </div>
+                <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                                <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !bankName.valid }">
+                                            <label for="bankName">Bank Name*</label>
+                                            <input type="text" class="form-control" name="bankName" [(ngModel)]="model.bankName" #bankName="ngModel" required />
+                                            <div *ngIf="f1.submitted && !bankName.valid" class="help-block">Bank Name is required</div>
+                                </div> 
+                        </div> 
+                        <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !accountNumber.valid }">
+                                    <label for="accountNumber">Account Number*</label>
+                                    <input type="text" class="form-control" name="accountNumber" [(ngModel)]="model.accountNumber" #accountNumber="ngModel" required />
+                                    <div *ngIf="f1.submitted && !accountNumber.valid" class="help-block">Agent A/c Number is required</div>
+                            </div>
+                        </div>       
+                </div>
+                <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                                <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !bankBranchName.valid }">
+                                            <label for="bankBranchName">Bank Branch Name*</label>
+                                            <input type="text" class="form-control" name="bankBranchName" [(ngModel)]="model.bankBranchName" #bankBranchName="ngModel" required />
+                                            <div *ngIf="f1.submitted && !bankBranchName.valid" class="help-block">Bank Branch Name is required</div>
+                                </div> 
+                        </div> 
+                        <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                        <div class="col-md-5 col-xs-5 col-lg-5">
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !refEmploy.valid }">
+                                <label for="refEmploy">Reference Employee*</label>
+                                <select class="form-control" name ="refEmploy" [(ngModel)]="model.refEmploy" #refEmploy="ngModel" required>
+                                    <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                    </option> 
+                                </select>
+                                <div *ngIf="f1.submitted && !refEmploy.valid" class="help-block">Reference Employee is required</div>
+                        </div>  
+                        </div>  
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-5">
+                        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !selectedCountry.valid }">
+                            <label  for="selectedCountry">Contry*</label>
+                            <select class="form-control" name ="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" required>
+                                <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                                </option> 
+                            </select>
+                            <div *ngIf="f1.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                        </div>
+                    </div>   
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !agentType.valid }">           
+                    <input type="radio" name="agentType" value="Investment Agent" [(ngModel)]="model.agentType" #agentType="ngModel" required />
+                    <label for="Investment Agent">Investment Agent</label> &nbsp;&nbsp;&nbsp;        
+                    <input type="radio" name="agentType" value="Clinic Agent" [(ngModel)]="model.agentType" #agentType="ngModel" required />
+                    <label for="Clinic Agent">Clinic Agent </label> 
+                    <div *ngIf="f1.submitted && !agentType.valid" class="help-block">Agent Type is required</div>
+                </div>   
+                <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Register</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <button  (click)="onMenuClick('back')" class="btn btn-primary">Back</button>
+                       <!--  <a [routerLink]="['/login']" class="btn btn-link">Cancel</a> -->
+        
+                </div>
+            </div>
+        
+            </form>  
+        </div>
+       
+       <!--   Register Agent End -->
+       
+        <!-- Agent Details start -->
+            <div *ngIf="viewagent" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+                <br/>
+                <form name="agentform" (ngSubmit)="search.form.valid && searchAgent()" #search="ngForm" novalidate>
+                    <br/>
+                    <table cellspacing="0" cellpadding="0" border="0" id="box-table-a">
+                        <thead>
+                            <th id="header">Search Criteria</th>
+                        </thead>
+                        <tbody style="color:black">
+                            <tr>
+                                <div class="col-sm-2">
+                                    <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !selectedCountry.valid }">
+                                        <label value="selectedCountry">Country</label>
+                                            <select class="form-control" name="selectedCountry"  [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" style="height:30px;" required>
+                                            <option value="All" selected="selected">All</option>
+                                            <option *ngFor="let itemCountry of countryList" [ngValue]="itemCountry" value="{{ itemCountry }}">{{itemCountry}}</option>
+                                        </select>
+                                        <div *ngIf="search.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !agentType.valid }">
+                                        <label value="agentType">Agent Type</label>
+                                        <select class="form-control" name="agentType"  [(ngModel)]="model.agentType" #agentType="ngModel" style="height:30px;" required>
+                                                <option value="All">All</option>
+                                                <option value="No Agent">No Agent</option>
+                                                <option value="Clinic Agent">Clinic Agent</option>
+                                                <option value="Investment Agent">Investment Agent</option>
+                                        </select>
+                                        <div *ngIf="search.submitted && !agentType.valid" class="help-block">Agent Type is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !agentCode.valid }">
+                                        <label value="agentCode">Agent Code</label>
+                                        <select class="form-control" name="agentCode"  [(ngModel)]="model.agentCode" #agentCode="ngModel" style="height:30px;" required>
+                                                <option value="All">All</option>
+                                                <option *ngFor="let itemCode of ledgerList" [ngValue]="itemCode" value="{{ itemCode.agentCode }}">{{itemCode.agentCode}}</option>
+                                        </select>
+                                        <div *ngIf="search.submitted && !agentCode.valid" class="help-block" style="margin-left:-7px;">Agent Code is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !name.valid }">
+                                        <label value="name">Name</label>
+                                        <select class="form-control" name="name"  [(ngModel)]="model.name" #name="ngModel" style="height:30px;" required>
+                                            <option value="All">All</option>
+                                            <option *ngFor="let muscleCar of agList" [ngValue]="muscleCar" value="{{ muscleCar.name }}">{{muscleCar.name}}</option>
+                                        </select>
+                                        <div *ngIf="search.submitted && !name.valid" class="help-block">Agent Name is required</div>   
+                                    </div>
+                                </div>	
+                                <div class="col-sm-2">
+                                    <div class="form-group" [ngClass]="{ 'has-error': search.submitted && !bankName.valid }">
+                                        <label value="bankName">Bank Name</label>
+                                        <select class="form-control" name="bankName"  [(ngModel)]="model.bankName" #bankName="ngModel" style="height:30px;" required>
+                                                <option value="All">All</option>
+                                                <option *ngFor="let itemBank of invagList" [ngValue]="itemBank" value="{{ itemBank.bankName }}">{{itemBank.bankName}}</option>
+                                        </select>
+                                        <div *ngIf="search.submitted && !bankName.valid" class="help-block">Bank Name is required</div>
+                                    </div>
+                                </div>   
+                                <div class="col-sm-1">
+                                    <button class="btn btn-default" type="submit" style="margin:23px 15px 15px 40px;">Search</button> 
+                                </div>
+                            </tr>
+                        </tbody>                   
+                    </table>                 
+                </form>	
+                <div class="col-sm-8">    
+                    <h3> <a> Agent Information  </a></h3> 
+                </div> 
+                <br/>    
+                <form name="agenttableform">
+                    <table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>AgentCode</th>
+                                <th>AgentName</th>
+                                <th>AgentPhoneNumber</th>
+                                <th>AgentEmailID</th>
+                                <th>AgentAddress</th>
+                                <th>AgentCountry</th>
+                                <th>AgentBankName</th>
+                                <th>Agent A/C Number</th>
+                                <th>AgentBranchName</th>
+                                <th>Agent Type</th>
+                                <th>Ref.Employee</th>
+                                <th>View</th>   
+                                <th>Edit</th>   
+                                <th>Remove</th>     
+                            </tr>
+                        </thead> 
+                        
+                        <tfoot>
+                            <tr>
+                
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr *ngFor="let aL of agentList"> 
+                                <td>{{ aL.sNo }}</td>
+                                <td>{{ aL.agentCode }}</td>
+                                <td>{{ aL.name }}</td>
+                                <td>{{ aL.phoneNumber }}</td>
+                                <td>{{ aL.emailID }}</td>
+                                <td>{{ aL.address }}</td>
+                                <td>{{ aL.selectedCountry }}</td>
+                                <td>{{ aL.bankName }}</td>
+                                <td>{{ aL.accountNumber }}</td>
+                                <td>{{ aL.bankBranchName }}</td>
+                                <td>{{ aL.agentType | uppercase }}</td>
+                                <td>{{ aL.refEmploy }}</td>
+                                <td> <button class="btn btn-default" (click)="agentAction(aL.Code,'view',aL.primaryKey)">View</button> </td>
+                                <td> <button class="btn btn-default" (click)="agentAction(aL.Code,'edit',aL.primaryKey)">Edit</button> </td>
+                                <td>  <button class="btn btn-default" (click)="agentAction(aL.Code,'remove',aL.primaryKey)">Remove</button>  </td>
+                            </tr> 
+                        </tbody>
+                </table>
+            </form> 
+        </div>   
+        <!-- Agent Details End -->
+       
+        <!-- Loading Image Start -->
+        <div class="row">
+            <div class="col-md-5 col-xs-5 col-lg-5">			
+                <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+            </div>
+            <div class="col-md-7 col-xs-7 col-lg-7">    
+            </div>
+        </div>
+        <!-- Loading Image End -->
+    
+        <!--- 3rd dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Network issue please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+       
+        <!--- 4th dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display4}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Data was Updated Successfully.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+    
+        <!-- Dialog Box5 section -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display6}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Clinic Name Added Successfully.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+
+        <!--- agrentsuccess dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentsuccess}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Information Successfully Saved.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+       
+        <!--- agentfailure dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentfailure}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Data is not stored please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+       
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noagentinfo}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onDialogboxClose()"></button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No Data for Information.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onDialogboxClose()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->   
+       
+        <!--- Clinic Exited  dialog box -->
+       <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':clinicexit}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Clinic Name is already exist Please try with another Name.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !-->
+       
+       
+        <!--- Clinic Exited  dialog box -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentExit}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>User Name/Email ID is already exist Please try with another Name.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+       </div><!-- /.modal !-->
+       
+        <!-- view Agent -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentView}" style="margin-top:3%;height:215%">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Agent View</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-5 col-xs-5 col-lg-4">Agent Code</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentCode }}</div>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-5 col-xs-5 col-lg-4">Agent Name</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.name }}</div>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Phone Number</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.phoneNumber }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Agent Email</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.emailID }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Agent address</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.address }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-5 col-xs-5 col-lg-4">Country</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.selectedCountry }}</div>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Bank Name</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.bankName }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Account Number</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.accountNumber }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Bank Branch Name</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.bankBranchName }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-5 col-lg-4">Agent Type</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentType }}</div>
+                                </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-5 col-xs-5 col-lg-4">Employee Name/Code</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.refEmploy }}</div>
+                            </div>
+                        </div><br/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !--> 
+       
+            <!-- Modify Agent start -->
+        <form name="agentEditform" (ngSubmit)="agf.form.valid && setAgentUpdate()" #agf="ngForm" novalidate>
+            <div *ngIf="agentEdit">
+                <br/><br/>
+                <div class="col-sm-12 col-lg-8">
+                    <br/><br/>
+                </div>
+                    <div class="container">
+                        <div  class="row">
+                        <div class="col-sm-8">      
+                            <h3> <a> Modify | Agent Info  </a></h3> <br/>						  
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentCode }}</div>
+                            </div><br/>
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Type</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ this.user.agentType }}</div>
+                            </div><br/>			
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                        <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !name.valid }">
+                                            <input type="text" class="form-control" name="name" value="{{ this.user.name  }}" [(ngModel)]="this.user.name" #name="ngModel" required />
+                                            <div *ngIf="agf.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Phone Number*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                            <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !phoneNumber.valid }">
+                                                    <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                                                    <div *ngIf="agf.submitted && !phoneNumber.valid" class="help-block">phoneNumber is required</div>
+                                                </div>
+                                    </div>
+                            </div>					
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Email*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                            <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !emailID.valid }">
+                                                    <input type="text" class="form-control" name="emailID" [(ngModel)]="this.user.emailID" #emailID="ngModel" required />
+                                                    <div *ngIf="agf.submitted && !emailID.valid" class="help-block">EmailID is required</div>	
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Country*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                        <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !selectedCountry.valid }">
+                                            <select class="form-control" name ="selectedCountry"  [(ngModel)]="this.user.selectedCountry" #selectedCountry="ngModel" required>
+                                                <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                                                </option> 
+                                            </select>
+                                            <div *ngIf="agf.submitted && !selectedCountry.valid" class="help-block">Country is required</div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Address*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                            <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !address.valid }">
+                                                    <input type="text" class="form-control" name="address" [(ngModel)]="this.user.address" #address="ngModel" required />
+                                                    <div *ngIf="agf.submitted && !address.valid" class="help-block">Agent address is required</div>
+                                                </div>
+                                    </div>
+                            </div>							
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent BankName*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                        <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !bankName.valid }">
+                                            <input type="text" class="form-control" name="bankName" [(ngModel)]="this.user.bankName" #bankName="ngModel" required />
+                                            <div *ngIf="agf.submitted && !bankName.valid" class="help-block">BankName is required</div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Accont Number*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                            <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !accountNumber.valid }">
+                                                    <input type="text" class="form-control" name="accountNumber" [(ngModel)]="this.user.accountNumber" #accountNumber="ngModel" required />
+                                                    <div *ngIf="agf.submitted && !accountNumber.valid" class="help-block">Agent A/c is required</div>
+                                                </div>
+                                    </div>
+                            </div>  
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Bank BranchName*</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">
+                                        <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !bankBranchName.valid }">
+                                            <input type="text" class="form-control" name="bankBranchName" [(ngModel)]="this.user.bankBranchName" #bankBranchName="ngModel" required />
+                                            <div *ngIf="agf.submitted && !bankBranchName.valid" class="help-block">Bank BranchName is required</div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 col-xs-5 col-lg-3">Employee Name/Code*</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-6 col-xs-6 col-lg-6">
+                                    <div class="form-group" [ngClass]="{ 'has-error': agf.submitted && !refEmploy.valid }">
+                                        <select class="form-control" name ="refEmploy" [(ngModel)]="this.user.refEmploy" #refEmploy="ngModel" required>
+                                            <option *ngFor="let itemEmployee of empList" value="{{ itemEmployee }}"> {{ itemEmployee }} 
+                                            </option> 
+                                        </select>
+                                        <div *ngIf="agf.submitted && !refEmploy.valid" class="help-block">Employee Name/Code is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                    <button   class="btn btn-primary">Update</button>
+                                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+                                    <button  (click)="onMenuClick('backToAgentInfo')" class="btn btn-primary">Back</button>
+       
+                                </div>    			
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </form> 
+        <!-- Modify agent end -->
+       
+        <!-- Remove Agent start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemove}" style="margin-top:5%;height:80%">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 10px;">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ user.agentCode }}</div>
+                            </div><br/>	
+                            <div class="row">
+                                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Name</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{ user.name }}</div>
+                            </div><br/>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"(click)="onDeleteAgent(user.agentCode,user.primaryKey)">Yes</button>
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()">No</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !--> 
+        <!-- Remove Agent end -->
+       
+        <!-- Yes To Remvoe Agent start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemovesuccess}" style="margin-top:3%;height:50%">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Removed Agent</h4>
+                    </div>
+                    <div class="modal-body">  
+                            Agent is deleted Successfully .... 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !--> 
+       
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':agentRemovefail}" style="margin-top:3%;height:50%">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">    
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Removed Agent</h4>
+                    </div>
+                    <div class="modal-body">
+                            Agent is not deleted .... 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal !--> 
+       
+        <!-- Yes To Remove Agent end -->
+       
+            <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noreportagentinfo}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                            <h4 class="modal-title">Alert</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>No report for these two days.</p> 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal !-->
+            
+       <!-- user Guide Div Start -->
+        <form name="guideform">
+            <div *ngIf="userguide" id="page-wrapper" class="alldiv" style="-webkit-overflow-scrolling: touch;">
+                <br/>    
+                <h3> <a> TRIO User Guide  </a></h3> 						   
+                <br/>
+                <div class="container">
+                    <br/>
+                    <p>User Guide In Progress</p>
+                </div>     
+            </div>
+        </form>
+        <!-- user Guide Div End -->
+        
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noSearchinfo}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No Data for Information.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>              
+
+        <form name="reportform"> 
+            <div *ngIf="empManagerReportdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+                <br/><br/>                        
+                <div class="col-sm-8">    
+                    <h3> <a> Employee Sales Report View  </a></h3> 
+                    <br/>
+                    <button (click)="printToCart()" class="btn btn-primary">Download Excel</button>
+                    <br/><br/>
+                </div>
+                <table cellpadding="0" cellspacing="0" border="0" 
+                    class="datatable table table-striped table-bordered" id="empManagerReport" #empManagerReport>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>EmployeeCode</th>
+                            <th>EmployeeName</th>
+                            <th>EmployeePhoneNumber</th>                                
+                            <th>EmployeeRole</th> 
+                            <th>CreatdDate</th> 
+                            <th>AgentName</th>
+                            <th>AgentCode</th> 
+                            <th>AgentType</th>  
+                            <th>ClinicName</th> 
+                            <th>ClinicCode</th>                                         
+                        </tr>
+                    </thead> 
+                    
+                    <tbody>
+                        <tr *ngFor="let eRL of empReportList"> 
+                            <td>{{ eRL.sNo }}</td>
+                            <td>{{ eRL.employeeCode }}</td>
+                            <td>{{ eRL.name }}</td>
+                            <td>{{ eRL.phoneNumber }}</td>
+                            <td>{{ eRL.empRole }}</td>
+                            <td>{{ eRL.createdDate }}</td>
+                            <td>{{ eRL.agentName }}</td>
+                            <td>{{ eRL.agentCode }}</td>  
+                            <td>{{ eRL.agentType }}</td>
+                            <td>{{ eRL.clinicName }}</td>  
+                            <td>{{ eRL.clinicCode }}</td>                            
+                        </tr> 
+                    </tbody>
+                </table> 
+            </div>
+        </form>
+
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noempreport}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No Data for Employee Report.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       </section>
+
+   </div>
+   
+</div>  
+
+
+   
+ 
+ 

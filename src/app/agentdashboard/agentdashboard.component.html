@@ -1,0 +1,447 @@
+<div class="wy-grid-for-nav">
+    <nav class="navbar navbar-fixed-top" >
+        <div class="navbar-header">
+          <a class="pointer" (click)="agenthome()">
+          <img [src]="imgsrc"> </a>
+        </div>
+  
+        <ul class="nav navbar-right navbar-top-links">
+          <li class="dropdown navbar-inverse">
+            <a class="notif"  data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <b class="caret"></b> 
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>     
+                    <!-- <a href="#">  -->
+                    <a>
+                        <div>
+                            <i class="fa fa-comment fa-fw"></i> Alert for New Clinic
+                            <span class="pull-right text-muted small">4 minutes ago</span>
+                        </div>
+                    </a>
+                </li>
+                <li>     
+                    <!-- <a href="#">  -->
+                    <a>
+                        <div>
+                            <i class="fa fa-comment fa-fw"></i> Alert for New Partner
+                            <span class="pull-right text-muted small">5 minutes ago</span>
+                        </div>
+                    </a>
+                </li>
+  
+            </ul>  
+          </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i> Agent <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                  <li><a (click)="clickProfile()"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a [routerLink]="['/login']">
+                      <i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
+      
+              </ul>
+          </li>
+        </ul>
+      <!-- /.navbar-top-links -->
+  </nav>   
+  
+  <div *ngIf="agentDashDiv" id="page-wrapper" style="cursor: pointer;">
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <h3 class="page-header"> <a> TRIO Agent Dashboard </a></h3>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div>Sales Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-left"> <a (click)="onMenuClick('clinicreport')">Click here </a></span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+  
+                    <div class="clearfix"></div>
+                </div>    
+            </div>
+        </div>
+  
+        <div class="col-lg-3 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-comments fa-5x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div>My Profile</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="panel-footer">
+                  <span class="pull-left"> <a (click)="onMenuClick('profile')">Click here </a></span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+  
+                  <div class="clearfix"></div>
+              </div>    
+          </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  <!-- Ledger View Start -->		
+  
+    <form name="profileform" (ngSubmit)="f.form.valid && updateAgentProfile()" #f="ngForm" novalidate>
+        <div *ngIf="myProfile" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+            <br/><br/>
+            <div class="container">
+            <br/>
+            <div class="col-lg-7 col-xs-9 col-sm-9"></div>
+            <div class="col-lg-5 col-xs-3 col-sm-3">
+                <h4><a (click)="onMenuClick('ProfileEdit')"> Edit </a></h4>
+            </div>
+                <div  class="row">
+                <div class="col-sm-8">      
+                <h3> <a> My Profile view  </a></h3> <br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.name }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.agentCode }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Phone Number</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.phoneNumber }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.emailID }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Address</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.address }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Bank Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.bankName }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Bank Branch Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.bankBranchName }}</div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Bank A/C Number</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.accountNumber }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Type</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.agentType }}</div>
+                </div><br/>
+                </div>
+                </div>
+            </div> 
+        
+        </div>
+        
+        <div *ngIf="profilediv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">
+            <br/><br/>
+            <div class="col-sm-12 col-lg-8"></div>
+            <div class="container">
+                <br/>
+                <!-- <p> My Information view </p> -->
+                <div  class="row">
+                <div class="col-sm-8">      
+                <h3> <a> My Profile Edit  </a></h3> <br/>						  
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">User Name</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.username }}</div>
+                </div><br/>			
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Code</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.agentCode }}</div>
+                </div><br/>	
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Agent Type</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.agentType }}</div>
+                </div><br/>		
+                <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-3">Email</div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-5 col-lg-6">{{ this.user.emailID }}</div>
+                </div><br/>			
+                <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Agent Name</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                            <input type="text" class="form-control" name="name" value="{{ this.user.name  }}" [(ngModel)]="this.user.name" #name="ngModel" required />
+                            <div *ngIf="f.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                        </div>
+                        </div>
+                    </div>				  
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Phone Number</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneNumber.valid }">
+                            <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                            <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">Phone Number is required</div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Address</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                                <input type="text" class="form-control" name="address" [(ngModel)]="this.user.address" #address="ngModel" required />
+                                <div *ngIf="f.submitted && !address.valid" class="help-block">Address is required</div>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Bank Name</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankName.valid }">
+                                <input type="text" class="form-control" name="bankName" [(ngModel)]="this.user.bankName" #bankName="ngModel" required />
+                                <div *ngIf="f.submitted && !bankName.valid" class="help-block">Bank Name is required</div>	
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Bank A/C Number</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !accountNumber.valid }">
+                                <input type="text" class="form-control" name="accountNumber" [(ngModel)]="this.user.accountNumber" #accountNumber="ngModel" required />
+                                <div *ngIf="f.submitted && !accountNumber.valid" class="help-block">A/C is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-xs-5 col-lg-3">Bank Branch Name</div>
+                        <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                        <div class="col-md-6 col-xs-5 col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankBranchName.valid }">
+                                <input type="text" class="form-control" name="bankBranchName" [(ngModel)]="this.user.bankBranchName" #bankBranchName="ngModel" required />
+                                <div *ngIf="f.submitted && !bankBranchName.valid" class="help-block">Branch Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button  (click)="onMenuClick('myprofileback')" class="btn btn-primary">Back</button>
+                        <button   class="btn btn-primary">Update</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    </div>    			
+                </div>
+                </div>
+            </div>  
+            </div>
+        </form>
+  
+        <form name="reportform"> 
+            <div *ngIf="reportdiv" id="page-wrapper" style="-webkit-overflow-scrolling: touch;">  
+                <br/><br/>                        
+                <div *ngIf="clinicreport">
+                    <div class="col-sm-8">
+                        <h3> <a> Clinic Agent Report View  </a></h3> 
+                        <br/>
+                        <button (click)="DownlodclinicExcel()" class="btn btn-primary">Download Excel</button>
+                        <br/><br/>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" 
+                        class="datatable table table-striped table-bordered" id="clinicAgentReport" #clinicAgentReport>
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>AgentCode</th>
+                                <th>AgentName</th>
+                                <th>AgentPhoneNumber</th> 
+                                <th>ClinicName</th>
+                                <th>ClinicCode</th>
+                                <th>ClinicPhoneNumber</th>  
+                                <th>CreatedDate</th>  
+                                <th>ClinicAddress</th>
+                                <th>EmployeeName</th> 
+                                <th>PartnerName</th>                                         
+                            </tr>
+                        </thead> 
+                        
+                        <tbody>
+                        <tr *ngFor="let cRL of clinicReportList"> 
+                                <td>{{ cRL.sNo }}</td>
+                                <td>{{ cRL.agentCode }}</td>
+                                <td>{{ cRL.name }}</td>
+                                <td>{{ cRL.phoneNumber }}</td>
+                                <td>{{ cRL.clinicName }}</td>
+                                <td>{{ cRL.clinicCode }}</td>
+                                <td>{{ cRL.clinicPhoneNumber }}</td>  
+                                <th>{{ cRL.createdDate }}</th>
+                                <td>{{ cRL.address }}</td>     
+                                <td>{{ cRL.empName }}</td>
+                                <td>{{ cRL.memberName }}</td>                   
+                            </tr> 
+                        </tbody>
+                    </table> 
+                </div>
+            
+                <div *ngIf="invreport">
+                    <div class="col-sm-8">
+                        <h3> <a> Investment Agent Report View  </a></h3> 
+                        <br/>
+                        <button (click)="DownlodinvExcel()" class="btn btn-primary">Download Excel</button>
+                        <br/><br/>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" 
+                        class="datatable table table-striped table-bordered" id="invAgentReport" #invAgentReport>
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>PartnerNumber</th>
+                                <th>PartnerName</th>
+                                <th>PartnerPhoneNumber</th>
+                                <th>PartnerEmailID</th>
+                                <th>No.of.Clinics</th>
+                                <th>EnrollmentDate</th>
+                                <th>InvestmentAmount</th>
+                                <th>PartnerStatus</th>
+                                <th>PartnerPayStatus</th>
+                            </tr>
+                        </thead> 
+                        
+                        <tbody>
+                        <tr *ngFor="let iRL of invReportList"> 
+                                <td>{{ iRL.sNo }}</td>
+                                <td>{{ iRL.memberNumber }}</td>
+                                <td>{{ iRL.firstName }}</td>
+                                <td>{{ iRL.phoneNumber }}</td>
+                                <td>{{ iRL.emailID }}</td>
+                                <td>{{ iRL.noofclinics }}</td>
+                                <td>{{ iRL.enrollmentDate }}</td>
+                                <td>{{ iRL.totalAmount }}</td>
+                                <td>{{ iRL.status }}</td>
+                                <td>{{ iRL.paymentpath }}</td>
+                            </tr> 
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </form>
+  
+        <!-- Network issue Dialog Box Start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Network issue please try again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Network issue Dialog Box Start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noclinicreport}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No Data for clinic agent Report.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Network issue Dialog Box Start -->
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noinvreport}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>No Data for clinic investment Report.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':updateprofile}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Agent Details was updated successfully.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Loading Image Start -->
+        <div class="row">
+            <div class="col-md-5 col-xs-5 col-lg-5">			
+                <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+            </div>
+            <div class="col-md-7 col-xs-7 col-lg-7"> </div>
+        </div>
+        <!-- Loading Image End -->
+  
+  
+  </div>

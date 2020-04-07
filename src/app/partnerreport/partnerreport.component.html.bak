@@ -1,0 +1,133 @@
+<app-header></app-header>
+<br/> <br/> 
+<form name="memberreportform" (ngSubmit)="memberrep.form.valid && getMemberReport()"
+    #memberrep="ngForm" novalidate> 
+    <div id="wrapper1" style="-webkit-overflow-scrolling: touch;">                  
+        <br/>                       
+        <div class="col-sm-8">  
+            <h3> <a> Partner Report View  </a></h3> 
+            <br/>    
+        
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Choose Status*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': memberrep.submitted && !status.valid }">
+                        <select class="form-control"  name ="status" [(ngModel)]="model.status" #status="ngModel" required>
+                            <option value="All">All</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Waiting For Approval">Waiting For Approval</option>
+                        </select>
+                        <div *ngIf="memberrep.submitted && !status.valid" class="help-block">Status is required</div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-md-5 col-xs-5 col-lg-3">From Date*</div>
+            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+            <div class="col-md-6 col-xs-5 col-lg-6">
+                <div class="form-group" [ngClass]="{ 'has-error': memberrep.submitted && !fromDate.valid }">
+                        <input type="date" class="form-control" name="fromDate" [(ngModel)]="model.fromDate" #fromDate="ngModel" required />
+                        <div *ngIf="memberrep.submitted && !fromDate.valid" class="help-block">From Date is required</div>
+                </div>
+            </div>
+        </div>   
+
+        <div class="row">
+            <div class="col-md-5 col-xs-5 col-lg-3">To Date*</div>
+            <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+            <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': memberrep.submitted && !toDate.valid }">
+                            <input type="date" class="form-control" name="toDate" [(ngModel)]="model.toDate" #toDate="ngModel" required />
+                            <div *ngIf="memberrep.submitted && !toDate.valid" class="help-block">To Date is required</div>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+                <button class="btn btn-primary">Search</button>
+                <button  [routerLink]="['/report-menus']" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+  </div>
+</form>            
+    
+<div *ngIf="employeereporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+
+    <div class="col-sm-8">
+        <button (click)="printToCart()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;" 
+      class="datatable table table-striped table-bordered" id="partnerReport" #partnerReport>
+      <thead>
+         <tr>
+             <th>S.No</th> 
+             <th>PartnerName</th> 
+             <th>PartnerCode</th>
+             <th>PhoneNumber</th> 
+             <th>PartnerEmailID</th> 
+             <th>CreatedDate</th>
+             <th>PartnerType</th> 
+             <th>TotalAmount</th>                               
+             <th>PartnerStatus</th>
+             <th>ClinicStatus</th> 
+             <th>PaymentStatus</th>   
+             <th>AgentCode</th>                                   
+         </tr>   
+      </thead> 
+     
+      <tbody>
+         <tr *ngFor="let mRL of allMemList"> 
+             <td>{{ mRL.sNo }}</td>
+             <td>{{ mRL.firstName }}</td>
+             <td>{{ mRL.memberID }}</td>
+             <td>{{ mRL.phoneNumber }}</td>
+             <td>{{ mRL.emailID }}</td>
+             <td>{{ mRL.investmentDate }}</td>
+             <td>{{ mRL.actType }}</td>
+             <td>{{ mRL.totalAmount }}</td>
+             <td>{{ mRL.status }}</td>
+             <td>{{ mRL.bookingStatus }}</td>
+             <td>{{ mRL.paymentpath }}</td>
+             <td>{{ mRL.agentCode }}</td>
+         </tr> 
+      </tbody>
+    </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Network issue please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noreportagentinfo}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>No report for these two days.</p> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>

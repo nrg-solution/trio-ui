@@ -1,0 +1,330 @@
+<app-header></app-header>
+<br/> <br/> 
+<form name="monthsalesreportform" (ngSubmit)="salesrep.form.valid && getSalesReport()" 
+    #salesrep="ngForm" novalidate> 
+    <div id="wrapper1" style="-webkit-overflow-scrolling: touch;">                  
+        <br/>                       
+        <div class="col-sm-8">  
+            <h3> <a> Sales Report View  </a></h3>
+            <br/>    
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Select Month*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': salesrep.submitted && !selectedMonth.valid }">
+                        <select class="form-control"  name ="selectedMonth" [(ngModel)]="model.selectedMonth" #selectedMonth="ngModel" required>
+                            <option value="Jan">January</option>
+                            <option value="Feb">February</option>
+                            <option value="Mar">March</option>
+                            <option value="Apr">April</option>
+                            <option value="May">May</option>
+                            <option value="Jun">June</option>
+                            <option value="Jul">July</option>
+                            <option value="Aug">August</option>
+                            <option value="Sep">September</option>
+                            <option value="Oct">October</option>
+                            <option value="Nov">November</option>   
+                            <option value="Dec">December</option>
+                        </select>
+                        <div *ngIf="salesrep.submitted && !selectedMonth.valid" class="help-block">Select Month is required</div>
+                    </div>
+                </div>
+            </div>   
+
+            <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Choose Report*</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-6 col-xs-5 col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': salesrep.submitted && !reportName.valid }">
+                        <select class="form-control"  name ="reportName" [(ngModel)]="model.reportName" #reportName="ngModel"  (change)='changeReportName()' required>
+                                <option value="clinicAgent">Clinic Agent</option>
+                                <option value="partnerAgent">Partner Agent</option>
+                                <option value="empManager">Employee Manager</option>
+                                <option value="empNon-Manager">Employee Non-Manager</option>
+                            </select>
+                        <div *ngIf="salesrep.submitted && !reportName.valid" class="help-block">Select Month is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="changeName">
+               <div *ngIf="changeclinicName" class="row">  
+                   <div class="col-md-5 col-xs-5 col-lg-3">Agent Name*</div>
+                   <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                   <div class="col-md-6 col-xs-5 col-lg-6">
+                       <div class="form-group" [ngClass]="{ 'has-error': salesrep.submitted && !name.valid }">
+                           <select class="form-control" name ="name"  [(ngModel)]="model.name" #name="ngModel"  required>
+                               <option value="All">All</option>
+                               <option *ngFor="let itemAgent of agList" value="{{ itemAgent }}"> {{ itemAgent }} 
+                               </option> 
+                           </select>
+                           <div *ngIf="salesrep.submitted && !name.valid" class="help-block">Agent Name is required</div>
+                       </div>
+                   </div>
+               </div> 
+
+               <div *ngIf="changepartnerName" class="row">  
+                   <div class="col-md-5 col-xs-5 col-lg-3">Partner Name*</div>
+                   <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                   <div class="col-md-6 col-xs-5 col-lg-6">
+                       <div class="form-group" [ngClass]="{ 'has-error': salesrep.submitted && !memberName.valid }">
+                           <select class="form-control" name ="memberName"  [(ngModel)]="model.memberName" #memberName="ngModel"  required>
+                               <option value="All">All</option>
+                               <option *ngFor="let itemPartner of allMemList" value="{{ itemPartner }}"> {{ itemPartner }} 
+                               </option> 
+                           </select>
+                           <div *ngIf="salesrep.submitted && !memberName.valid" class="help-block">Partner Name is required</div>
+                       </div>
+                   </div>
+               </div> 
+
+               <div *ngIf="changeemployeeName" class="row">  
+                   <div class="col-md-5 col-xs-5 col-lg-3">Employee Name*</div>
+                   <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                   <div class="col-md-6 col-xs-5 col-lg-6">
+                       <div class="form-group" [ngClass]="{ 'has-error': salesrep.submitted && !empName.valid }">
+                           <select class="form-control" name ="empName"  [(ngModel)]="model.empName" #empName="ngModel"  required>
+                               <option value="All">All</option>
+                               <option *ngFor="let itemEmp of empList" value="{{ itemEmp }}"> {{ itemEmp }} 
+                               </option> 
+                           </select>
+                           <div *ngIf="salesrep.submitted && !empName.valid" class="help-block">Employee Name is required</div>
+                       </div>
+                   </div>
+               </div> 
+            </div>
+        
+            <div class="form-group">
+                    <button class="btn btn-primary">Search</button>
+                    <button (click)="backToReport()" class="btn btn-primary">Back</button>
+            </div>
+        </div>
+  </div>
+</form>            
+    
+<div *ngIf="salesclinicreporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+    <div class="col-sm-8">
+        <button (click)="clinicDownload()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;"
+      class="datatable table table-striped table-bordered"  id="salesclinicReport" #salesclinicReport>
+        <thead>
+            <tr>
+                <th>S.No</th> 
+                <th>AgentName</th> 
+                <th>AgentCode</th>
+                <th>AgentPhoneNumber</th> 
+                <th>AgentEmailID</th>  
+                <th>AgentAddress</th>    
+                <th>ClinicCount</th> 
+                <th>Ref.Employee</th>     
+                <th>AgentBankName</th>                               
+                <th>AgentA/C..Number</th>
+                <th>AgentBranchName</th> 
+                <th>AgentCountry</th>                             
+            </tr>   
+        </thead> 
+        
+        <tbody>
+            <tr *ngFor="let mSRL of clinicReportList"> 
+                <td>{{ mSRL.sNo }}</td>
+                <td>{{ mSRL.name }}</td>
+                <td>{{ mSRL.agentCode }}</td>
+                <td>{{ mSRL.phoneNumber }}</td>
+                <td>{{ mSRL.emailID }}</td>
+                <td>{{ mSRL.address }}</td>
+                <td>{{ mSRL.clinicCount }} </td> <!-- &nbsp; <a class="detailstable" (click)="MyClinicView(mSRL.agentCode,mSRL.primaryKey)">ViewClinic </a> </td> --> 
+                <td>{{ mSRL.refEmploy }} &nbsp;</td><!-- <a class="detailstable" (click)="MyEmployeeView(mSRL.refEmploy)">ViewEmployee </a> </td>  -->
+                <td>{{ mSRL.bankName }}</td>
+                <td>{{ mSRL.accountNumber }}</td>
+                <td>{{ mSRL.bankBranchName }}</td>
+                <td>{{ mSRL.selectedCountry }}</td>
+            </tr> 
+        </tbody>
+    </table>
+    <div class="row" id="viewdetails" *ngFor="let clinic of clinicReportList">
+        <span ng-show="$last">Total Clinics Added : {{ clinic.totalClincs }}</span>
+    </div>
+</div>
+
+<div *ngIf="salespartnerreporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+    <div class="col-sm-8">
+        <button (click)="partnerDownload()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;"
+      class="datatable table table-striped table-bordered"  id="salespartnerReport" #salespartnerReport>
+      <thead>
+          <tr>
+              <th>S.No</th> 
+              <th>PartnerName</th> 
+              <th>PartnerID</th>
+              <th>PartnerPhoneNumber</th> 
+              <th>PartnerEmailID</th>  
+              <th>AgentCode</th>     
+              <th>PartnerBankName</th>                                 
+              <th>PartnerA/CNumber</th>
+              <th>PartnerCountry</th>
+              <th>No.of.Clinic</th>   
+              <th>ClinicStatus</th>  
+              <th>PartnerType</th>  
+              <th>InvestmentAmount</th>
+              <th>TotalAmount</th> 
+          </tr>   
+      </thead> 
+      
+      <tbody>
+          <tr *ngFor="let pSRL of allMemList"> 
+              <td>{{ pSRL.sNo }}</td>
+              <td>{{ pSRL.firstName }}</td>
+              <td>{{ pSRL.memberID }}</td>
+              <td>{{ pSRL.phoneNumber }}</td>
+              <td>{{ pSRL.emailID }}</td>
+              <td>{{ pSRL.agentCode }}</td>  
+              <td>{{ pSRL.bankName }}</td>
+              <td>{{ pSRL.bankAcctNumber }}</td>
+              <td>{{ pSRL.selectedCountry }}</td>
+              <td>{{ pSRL.noofclinics }} </td> <!-- &nbsp; <a class="detailstable" (click)="MyClinicNameView(pSRL.noofclinics,pSRL.bookingStatus,pSRL.userLoginPrimaryKey)">ViewName </a>  </td> -->
+              <td>{{ pSRL.bookingStatus }}</td>
+              <td>{{ pSRL.actType }}</td>
+              <td>{{ pSRL.withdrawAmount }}</td>
+              <td>{{ pSRL.totalAmount }}</td>
+          </tr> 
+      </tbody>
+  </table>
+  <div class="row" id="viewdetails" *ngFor="let invamt of allMemList">
+      <span ng-show="$last">Total Investment Amount : {{ invamt.investmentAmount }}</span>
+  </div>
+</div>
+
+<div *ngIf="salesempmanagerreporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+    <div class="col-sm-8">
+        <button (click)="managerDownload()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;"
+      class="datatable table table-striped table-bordered"  id="salesmanagerReport" #salesmanagerReport>
+      <thead>
+          <tr>
+              <th>S.No</th> 
+              <th>EmployeeName</th> 
+              <th>EmployeeCode</th>
+              <th>EmployeePhoneNumber</th> 
+              <th>EmployeeEmailID</th>  
+              <th>EmployeeAddress</th>  
+              <th>EmployeeType</th>                               
+              <th>EmployeeSalary</th>
+              <th>EmployeeCountry</th> 
+              <th>EmployeeJoinDate</th>   
+              <th>Agent.Count</th>                               
+              <th>ClinicCount</th>                      
+          </tr>   
+      </thead> 
+      
+      <tbody>
+          <tr *ngFor="let eMSRL of empList"> 
+              <td>{{ eMSRL.sNo }}</td>
+              <td>{{ eMSRL.name }}</td>
+              <td>{{ eMSRL.employeeCode }}</td>
+              <td>{{ eMSRL.phoneNumber }}</td>
+              <td>{{ eMSRL.emailID }}</td>
+              <td>{{ eMSRL.address }}</td>
+              <td>{{ eMSRL.empType }}</td>
+              <td>{{ eMSRL.salary }}</td>
+              <td>{{ eMSRL.selectedCountry }}</td> 
+              <td>{{ eMSRL.join_date }}</td> 
+              <td>{{ eMSRL.agentCount }} </td> <!-- &nbsp; <a class="detailstable" (click)="MyEmpAgentView(eMSRL.employeeCode,eMSRL.primaryKey)">ViewAgent </a> </td>  -->                
+              <td>{{ eMSRL.clinicCount }} &nbsp; </td> <!-- <a class="detailstable" (click)="MyEmpClinicView(eMSRL.employeeCode,eMSRL.primaryKey)">ViewClinic </a> </td>  -->
+          </tr> 
+      </tbody>
+  </table>
+  <div class="row" id="viewdetails" *ngFor="let count of empList">
+      <span ng-show="$last">Total Agent : {{ count.totalAgents }}</span> &nbsp;&nbsp;
+      <span ng-show="$last">Total Clinic : {{ count.totalClincs }}</span>
+  </div>
+</div>
+
+<div *ngIf="salesempnonmanagerreporttable" id="wrapper1" style="-webkit-overflow-scrolling: touch;">
+    <div class="col-sm-8">
+        <button (click)="nonManagerDownload()" class="btn btn-primary">Download Excel</button>
+        <br/><br/> 
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" style="height:265px;"
+      class="datatable table table-striped table-bordered"  id="salesnonManagerReport" #salesnonManagerReport>
+      <thead>
+          <tr>
+              <th>S.No</th> 
+              <th>EmployeeName</th> 
+              <th>EmployeeCode</th>
+              <th>EmployeePhoneNumber</th> 
+              <th>EmployeeEmailID</th>  
+              <th>EmployeeAddress</th>  
+              <th>EmployeeType</th>                               
+              <th>EmployeeSalary</th>
+              <th>EmployeeCountry</th> 
+              <th>EmployeeJoinDate</th>  
+              <th>Ref.Employee</th> 
+              <th>AgentCount</th>                               
+              <th>Clinic.Count</th>                      
+          </tr>   
+      </thead> 
+      
+      <tbody>
+          <tr *ngFor="let eNMSRL of employeeList"> 
+              <td>{{ eNMSRL.sNo }}</td>
+              <td>{{ eNMSRL.name }}</td>
+              <td>{{ eNMSRL.employeeCode }}</td>
+              <td>{{ eNMSRL.phoneNumber }}</td>
+              <td>{{ eNMSRL.emailID }}</td>
+              <td>{{ eNMSRL.address }}</td>
+              <td>{{ eNMSRL.empType }}</td>
+              <td>{{ eNMSRL.salary }}</td>
+              <td>{{ eNMSRL.selectedCountry }}</td> 
+              <td>{{ eNMSRL.join_date }}</td>                  
+              <td>{{ eNMSRL.refEmploy }}</td> 
+              <td>{{ eNMSRL.agentCount }} </td> <!-- &nbsp; <a class="detailstable" (click)="MyEmpAgentView(eNMSRL.employeeCode,eNMSRL.primaryKey)">ViewAgent </a> </td>  -->                
+              <td>{{ eNMSRL.clinicCount }} </td> <!-- &nbsp; <a class="detailstable" (click)="MyEmpClinicView(eNMSRL.employeeCode,eNMSRL.primaryKey)">ViewClinic </a> </td>  --> 
+             </tr> 
+      </tbody>
+  </table>
+  <div class="row" id="viewdetails" *ngFor="let count of employeeList">
+      <span ng-show="$last">Total Agent : {{ count.totalAgents }}</span> &nbsp;&nbsp;
+      <span ng-show="$last">Total Clinic : {{ count.totalClincs }}</span>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nosalesreport}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+                <h4 class="modal-title">Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>No Report for this month.</p> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display3}">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+            <h4 class="modal-title">Error</h4>
+        </div>
+        <div class="modal-body">
+            <p>Network issue please try again.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+        </div>
+    </div>
+</div>
+</div>
